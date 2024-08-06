@@ -46,7 +46,7 @@ const Events = () => {
                     <CardTitle className="text-center mb-1">
                       {item?.event_name}
                     </CardTitle>
-                    <p className="text-start">
+                    <p className="text-center">
                       <strong>Date : </strong>
                       {formatDate(item?.event_date)}
                     </p>
@@ -55,7 +55,11 @@ const Events = () => {
                     {item?.event_status}
                   </CardContent>
                   <CardFooter className="flex justify-end">
-                    <Button>Read More</Button>
+                    <Link href={`/events?eid=${item?._id}`}>
+                      <Button className="hover:opacity-95 hover:bg-primary">
+                        Read More
+                      </Button>
+                    </Link>
                   </CardFooter>
                 </Card>
               </CarouselItem>

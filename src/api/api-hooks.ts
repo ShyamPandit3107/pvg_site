@@ -73,7 +73,7 @@ export const useAdmissionDetails = (data: data | undefined) => {
     queryKey: ["admissionDetails", data?.aid, data?.sid],
     queryFn: () => fetchAdmissionDetails(data!),
 
-    enabled: !!data?.aid && !!data?.sid,
+    enabled: !!data?.aid,
   });
 };
 

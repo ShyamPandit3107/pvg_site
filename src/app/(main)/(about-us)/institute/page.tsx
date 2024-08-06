@@ -13,16 +13,9 @@ const Institute = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const id = useStore((state) => state.id);
   const { data: websiteInfoByInstitute } = useWebsiteInfoByInstitute(id);
-  const Sidebar = [
-    "About Institute",
-    "Affiliation",
-    "Vision Mission",
-    "Organisation Structure",
-  ];
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
   const handleContentSelect = (item) => {
     setSelectedContent(item);
     setIsSidebarOpen(false);
@@ -105,3 +98,10 @@ const Institute = () => {
 };
 
 export default Institute;
+
+const Sidebar = [
+  "About Institute",
+  "Affiliation",
+  "Vision Mission",
+  "Organisation Structure",
+];

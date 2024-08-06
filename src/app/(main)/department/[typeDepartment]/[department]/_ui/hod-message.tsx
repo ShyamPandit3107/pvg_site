@@ -16,7 +16,7 @@ const HodMessage = ({
     <Card className="bg-background shadow-none">
       <CardHeader>
         <CardTitle>
-          <Heading>Founder Message</Heading>
+          <Heading>HOD Message</Heading>
         </CardTitle>
       </CardHeader>
       <CardContent>

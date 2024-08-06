@@ -47,7 +47,7 @@ const Notices = () => {
                     <CardTitle className="text-center mb-1">
                       {item?.insAnnTitle}
                     </CardTitle>
-                    <p className="text-start">
+                    <p className="text-center">
                       <strong>Date : </strong>
                       {formatDate(item?.createdAt)}
                     </p>
@@ -56,9 +56,11 @@ const Notices = () => {
                     {item?.insAnnDescription}
                   </CardContent>
                   <CardFooter className="flex justify-end">
-                    <Button className="hover:opacity-95 hover:bg-primary">
-                      Read More
-                    </Button>
+                    <Link href={`/notices?nid=${item?._id}`}>
+                      <Button className="hover:opacity-95 hover:bg-primary">
+                        Read More
+                      </Button>
+                    </Link>
                   </CardFooter>
                 </Card>
               </CarouselItem>

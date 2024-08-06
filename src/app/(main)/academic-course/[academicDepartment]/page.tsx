@@ -76,7 +76,6 @@ const AcademicCourse: React.FC = () => {
     }
     setIsSidebarOpen(false);
   };
-  console.log(selectedContent);
   return (
     <div className="flex flex-col md:flex-row border-t-1 border-back">
       {/* Mobile menu button */}

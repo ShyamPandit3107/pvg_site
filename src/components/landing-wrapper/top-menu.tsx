@@ -34,7 +34,7 @@ export function TopMenu() {
           newCommittees.push({
             id: item._id,
             name: item.custom_head_name,
-            url: `committee/${item._id}`,
+            url: `/committe/${item._id}`,
           });
         }
       });
@@ -50,27 +50,27 @@ export function TopMenu() {
     <Menubar className="flex justify-end bg-primary text-primary-foreground border-none">
       <MenubarMenu>
         <MenubarTrigger>
-          <Link href="">New Admission</Link>
+          <Link href="/admission?tab=new-admission">New Admission</Link>
         </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
-          <Link href="">Notices</Link>
+          <Link href="/notices">Notices</Link>
         </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
-          <Link href="">Alumini</Link>
+          <Link href="/alumini">Alumini</Link>
         </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
-          <Link href="">Library</Link>
+          <Link href="/library">Library</Link>
         </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
-          <Link href="">Contact Us </Link>
+          <Link href="/contact-us">Contact Us </Link>
         </MenubarTrigger>
       </MenubarMenu>
       <MenubarMenu>
@@ -81,29 +81,29 @@ export function TopMenu() {
 
         <MenubarContent>
           <MenubarItem>
-            <Link href="">Composition</Link>
+            <Link href="/iqac?tab=composition">Composition</Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">Policy</Link>
+            <Link href="/iqac?tab=policy">Policy</Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">Best Practices</Link>
+            <Link href="/iqac?tab=best-practices">Best Practices</Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">Syllabus Feedback</Link>
+            <Link href="/iqac?tab=syllabus-feedback">Syllabus Feedback</Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">Academic Calender</Link>
+            <Link href="/iqac?tab=academic-calender">Academic Calender</Link>
           </MenubarItem>
           <MenubarSeparator />
           <MenubarSub>
             <MenubarSubTrigger>Reports</MenubarSubTrigger>
             <MenubarSubContent>
               <MenubarItem>
-                <Link href="">IQAC Reports</Link>
+                <Link href="/iqac?tab=iqac-reports">IQAC Reports</Link>
               </MenubarItem>
               <MenubarItem>
-                <Link href="">Annual Reports</Link>
+                <Link href="/iqac?tab=annual-reports">Annual Reports</Link>
               </MenubarItem>
             </MenubarSubContent>
           </MenubarSub>
@@ -112,18 +112,20 @@ export function TopMenu() {
             <MenubarSubTrigger>SSR 2018</MenubarSubTrigger>
             <MenubarSubContent>
               <MenubarItem>
-                <Link href="">Documents</Link>
+                <Link href="/iqac?tab=ssr-2018-documents">Documents</Link>
               </MenubarItem>
               <MenubarItem>
-                <Link href="">Reports</Link>
+                <Link href="/iqac?tab=ssr-2018-reports">Reports</Link>
               </MenubarItem>
             </MenubarSubContent>
           </MenubarSub>
           <MenubarItem>
-            <Link href="">Audit</Link>
+            <Link href="/iqac?tab=audit">Audit</Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">Quality Initiatives</Link>
+            <Link href="/iqac?tab=quality-initiatives">
+              Quality Initiatives
+            </Link>
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
@@ -136,28 +138,30 @@ export function TopMenu() {
 
         <MenubarContent className="bg-background">
           <MenubarItem>
-            <Link href="/naac">Institute Perspective Planning</Link>
+            <Link href="/naac?tab=ipp">Institute Perspective Planning</Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">SSR-3 Cycle</Link>
+            <Link href="/naac?tab=ssr-3">SSR-3 Cycle</Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">SSR-4 Cycle</Link>
+            <Link href="/naac?tab=ssr-4">SSR-4 Cycle</Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">DVV</Link>
+            <Link href="/naac?tab=dvv">DVV</Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">IIAQ</Link>
+            <Link href="/naac?tab=iiaq">IIAQ</Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">Certificate</Link>
+            <Link href="/naac?tab=certificate">Certificate</Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">Student Satisfactory Survey</Link>
+            <Link href="/naac?tab=student-satisfactory-survey">
+              Student Satisfactory Survey
+            </Link>
           </MenubarItem>
           <MenubarItem>
-            <Link href="">Undertakings</Link>
+            <Link href="/naac?tab=undertakings">Undertakings</Link>
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>

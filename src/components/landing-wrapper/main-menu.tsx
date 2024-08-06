@@ -89,27 +89,27 @@ const MainMenu = ({ academicCourse }: { academicCourse: any }) => {
               <NavigationMenuContent>
                 <ul className="w-[230px] p-2 grid grid-cols-1">
                   <ListItem
-                    href="/admission/about"
+                    href="/admission?tab=about"
                     title="Admission Department"
                   ></ListItem>
                   <ListItem
-                    href="/admission/new-admission"
+                    href="/admission?tab=new-admission"
                     title="New Admission"
                   ></ListItem>
                   <ListItem
-                    href="/admission/admission-enquiry"
+                    href="/admission?tab=admission-enquiry"
                     title="Admission Enquiry"
                   ></ListItem>
                   <ListItem
-                    href="/admission/admission-process"
+                    href="/admission?tab=admission-process"
                     title="Admission Process"
                   ></ListItem>
                   <ListItem
-                    href="/admission/document-checklist"
+                    href="/admission?tab=document-checklist"
                     title="Document Checklist"
                   ></ListItem>
                   <ListItem
-                    href="/admission/contact-us"
+                    href="/admission?tab=contact-us"
                     title="Contact Us"
                   ></ListItem>
                 </ul>
@@ -124,20 +124,29 @@ const MainMenu = ({ academicCourse }: { academicCourse: any }) => {
               <NavigationMenuContent>
                 <ul className="w-[230px] p-2 grid grid-cols-1">
                   <ListItem
-                    href="/r&d/r&d-department"
-                    title="R&D Department"
+                    href="/research-and-development?tab=about"
+                    title="Research and Department"
                   ></ListItem>
-                  <ListItem href="/r&d/MOU" title="MOU"></ListItem>
                   <ListItem
-                    href="/r&d/research-paper"
+                    href="/research-and-development?tab=mou"
+                    title="MOU"
+                  ></ListItem>
+                  <ListItem
+                    href="/research-and-development?tab=research-paper"
                     title="Research Paper"
                   ></ListItem>
                   <ListItem
-                    href="/r&d/Activities"
+                    href="/research-and-development?tab=activities"
                     title="Activities"
                   ></ListItem>
-                  <ListItem href="/r&d/Projects" title="Projects"></ListItem>
-                  <ListItem href="/r&d/Meetings" title="Meetings"></ListItem>
+                  <ListItem
+                    href="/research-and-development?tab=projects"
+                    title="Projects"
+                  ></ListItem>
+                  <ListItem
+                    href="/research-and-development?tab=meetings"
+                    title="Meetings"
+                  ></ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
