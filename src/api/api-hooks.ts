@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   fetchAcademicModule,
   fetchAdmissionDetails,
@@ -49,6 +49,7 @@ import {
   fetchWebsiteInfoByInstitute,
 } from "./query";
 import { data } from "@/lib/type";
+import { sendEnquiry } from "./mutation";
 
 export const useInstituteMaster = (id: string | undefined) => {
   return useQuery({

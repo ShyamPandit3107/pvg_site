@@ -16,21 +16,22 @@ import { useAdmissionDetails, useAdmissionSiteInfo } from "@/api/api-hooks";
 import { fileShowUrl, imageShowUrl } from "@/lib/BaseUrl";
 import { getId } from "@/lib/utils";
 import Heading from "@/components/ui/heading";
+import ImageViewer from "@/components/ui/image-viewer";
 
 export default function AdmissionProcess() {
   const admissionId = useStore((state) => state.ids.admissionId);
-  const { data: admissionDetails } = useAdmissionDetails({
+  const { data: admissionDetails, error: detailsError } = useAdmissionDetails({
     aid: admissionId,
     sid: "",
   });
-  const { data: admissionGetSiteInfo } = useAdmissionSiteInfo(admissionId);
+  const { data: admissionGetSiteInfo, error: siteInfoError } =
+    useAdmissionSiteInfo(admissionId);
 
   const [deviceType, setDeviceType] = useState("");
   const [language, setLanguage] = useState("en");
 
   useEffect(() => {
     const userAgent = navigator.userAgent;
-
     if (/android/i.test(userAgent)) {
       setDeviceType("android");
     } else if (/iPad|iPhone|iPod/.test(userAgent)) {
@@ -39,11 +40,21 @@ export default function AdmissionProcess() {
       setDeviceType("");
     }
   }, []);
+
+  if (detailsError || siteInfoError) {
+    return <div>Error loading data</div>;
+  }
+
+  if (!admissionDetails || !admissionGetSiteInfo) {
+    return <div>Loading...</div>;
+  }
+  console.log(admissionDetails);
   console.log(admissionGetSiteInfo);
+  console.log(deviceType);
   return (
     <Card className="my-4 bg-background">
       <CardContent>
-        <Heading>Admission Process</Heading>
+        <Heading className="mb-2">Admission Process</Heading>
 
         {deviceType && (
           <div className="flex justify-center items-center mb-4">
@@ -72,6 +83,7 @@ export default function AdmissionProcess() {
           <Tabs
             defaultValue="en"
             className="w-full max-w-md flex flex-col items-center justify-center"
+            // onValueChange={(value) => setLanguage(value)}
           >
             <TabsList className="grid w-full grid-cols-3 bg-primary text-primary-foreground">
               <TabsTrigger value="en">English</TabsTrigger>
@@ -138,5 +150,6 @@ export default function AdmissionProcess() {
         </div>
       </CardContent>
     </Card>
+    // <h1>Admission Process</h1>
   );
 }

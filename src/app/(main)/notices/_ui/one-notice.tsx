@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useOneNoticeDetail } from "@/api/api-hooks";
@@ -11,6 +10,7 @@ import SubHeading from "@/components/ui/sub-heading";
 import Content from "@/components/ui/content";
 import { imageShowUrl } from "@/lib/BaseUrl";
 import { FileIcon } from "lucide-react";
+import ImageViewer from "@/components/ui/image-viewer";
 
 // Assuming these are available or you'll create them
 const daysOfWeek = [
@@ -75,7 +75,7 @@ export default function OneNotices({ id }) {
             {image.map((item, index) => (
               <Card key={index} className="overflow-hidden">
                 <CardContent className="p-0">
-                  <Image
+                  <ImageViewer
                     src={`${imageShowUrl}/${item?.documentKey}`}
                     alt="Notice image"
                     width={300}

@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import Content from "@/components/ui/content";
 import Heading from "@/components/ui/heading";
+import ImageViewer from "@/components/ui/image-viewer";
 import PDFViewer from "@/components/ui/PDFViewer";
 import { imageShowUrl } from "@/lib/BaseUrl";
 import { useStore } from "@/store";
@@ -99,7 +100,7 @@ const Accrediation = () => {
               </div>
               <div className="sm:w-1/5 w-full flex flex-col items-center justify-center text-center">
                 {selectedContent?.image && (
-                  <Image
+                  <ImageViewer
                     src={`${imageShowUrl}/${selectedContent?.image}`}
                     alt="founder image"
                     width={250}

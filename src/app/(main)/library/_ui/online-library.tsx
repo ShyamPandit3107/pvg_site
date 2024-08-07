@@ -15,6 +15,7 @@ import { useStore } from "@/store";
 import { useAllBooksByLibrary } from "@/api/api-hooks";
 import { imageShowUrl } from "@/lib/BaseUrl";
 import Heading from "@/components/ui/heading";
+import ImageViewer from "@/components/ui/image-viewer";
 
 export default function LibraryOnline() {
   const libraryId = useStore((state) => state.ids.libraryId);
@@ -32,7 +33,7 @@ export default function LibraryOnline() {
       onClick={() => setSelectedBook(book)}
     >
       <CardContent className="flex p-0">
-        <Image
+        <ImageViewer
           src={`${imageShowUrl}/`}
           alt={book?.bookName}
           width={80}
@@ -63,7 +64,7 @@ export default function LibraryOnline() {
           <DialogTitle>{book?.bookName}</DialogTitle>
         </DialogHeader>
         <div className="flex items-center gap-4">
-          <Image
+          <ImageViewer
             src={`/pdf-viewer/${book?.photo}`}
             alt={book?.bookName}
             width={80}
