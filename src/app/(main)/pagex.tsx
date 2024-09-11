@@ -2,18 +2,17 @@
 import { useWebsiteInfoByInstitute } from "@/api/api-hooks";
 import { useStore } from "@/store";
 import React from "react";
-
-import Image from "next/image";
 import CarouselComponent from "@/components/home/carousel-component";
 import AboutIns from "@/components/home/about-ins";
-import FounderMessage from "@/components/home/founder-message";
-import Notices from "@/components/home/notices";
-import Events from "@/components/home/events";
+import HomeDepartment from "@/components/home/home-department";
+import EventAccrediationVisionMission from "@/components/home/events-accrediation-vimi";
+import Testimonials from "@/components/home/alumini";
+import AchievementsSection from "@/components/home/achivement";
 const Page = () => {
   const id = useStore((state) => state.id);
   const { data: websiteInfoByInstitute } = useWebsiteInfoByInstitute(id);
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-4">
       {websiteInfoByInstitute?.one_ins?.landing_control?.home_background_object
         ?.images.length > 0 && (
         <CarouselComponent
@@ -32,7 +31,7 @@ const Page = () => {
           }
         />
       )}
-      {websiteInfoByInstitute?.one_ins?.landing_control
+      {/* {websiteInfoByInstitute?.one_ins?.landing_control
         ?.about_society_dynamic && (
         <FounderMessage
           data={
@@ -40,9 +39,16 @@ const Page = () => {
               ?.about_society_dynamic
           }
         />
-      )}
-      <Notices />
-      <Events />
+      )} */}
+      <HomeDepartment />
+      <EventAccrediationVisionMission
+        iso_certificate={websiteInfoByInstitute?.one_ins?.iso_certificate.slice(
+          0,
+          4
+        )}
+      />
+      <AchievementsSection />
+      <Testimonials />
     </div>
   );
 };

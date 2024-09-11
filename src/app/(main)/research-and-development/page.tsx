@@ -12,6 +12,7 @@ import ResearchPaper from "./_ui/research-paper";
 import Activities from "./_ui/activities";
 import Projects from "./_ui/projects";
 import Meetings from "./_ui/meetings";
+import { Separator } from "@/components/ui/separator";
 
 const RandD = () => {
   const [selectedContent, setSelectedContent] = useState("About");
@@ -79,16 +80,16 @@ const RandD = () => {
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 bg-background p-4`}
+        } md:block wmd:block w-full md:w-64 bg-gray-100 p-4`}
       >
         <ul>
           {Sidebar.map((item, index) => (
             <li key={index} className="mb-2">
               <Link
-                className={`w-full text-left block p-4 hover:bg-primary hover:text-secondary focus:bg-primary focus:text-secondary transition-colors shadow-md bg-card rounded-sm ${
+                className={`w-full text-left p-4 m-1 block hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
                   selectedContent === item.url
-                    ? "bg-primary text-secondary"
-                    : ""
+                    ? "border-primary font-semibold text-primary border-b-2 "
+                    : "border-transparent"
                 }`}
                 href={`/research-and-development?tab=${item.url}`}
               >
@@ -98,7 +99,10 @@ const RandD = () => {
           ))}
         </ul>
       </div>
-
+      <Separator
+        orientation="vertical"
+        className="mx-2 border-[1px] border-gray-100 h-screen"
+      />
       {/* Main content */}
       <div className="flex-1 p-6">
         {selectedContent === "about" ? (

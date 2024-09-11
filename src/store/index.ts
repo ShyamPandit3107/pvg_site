@@ -33,8 +33,11 @@ export interface State {
 export const useStore = create<State>((set) => ({
   insName: undefined,
   name: undefined,
-  // id: "651ba22de39dbdf817dd520c",
-  id: "660bd1c7d5016c9947aef713",
+  id: "651ba22de39dbdf817dd520c",
+  // id: "660bd1c7d5016c9947aef713",
+  //rs sapat
+  // id: "667ac2be2b6329957435b217",
+
   color: undefined,
   status: undefined,
   qid: undefined,

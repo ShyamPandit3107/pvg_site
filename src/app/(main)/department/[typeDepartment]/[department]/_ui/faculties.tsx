@@ -1,4 +1,5 @@
 import { useDepartmentAllStaff } from "@/api/api-hooks";
+import FacultyTable from "@/app/(main)/(about-us)/faculties/_ui/faculty-table";
 import Heading from "@/components/ui/heading";
 import ImageViewer from "@/components/ui/image-viewer";
 import {
@@ -22,7 +23,7 @@ const Faculties = ({ did }: { did: string }) => {
   return (
     <div>
       <Heading className="mb-2">Faculties</Heading>
-      <Table className="border-black/80 border-[1px]">
+      {/* <Table className="border-black/80 border-[1px]">
         <TableHeader className="bg-primary text-primary-foreground">
           <TableRow>
             <TableHead className="text-primary-foreground">Sr. No.</TableHead>
@@ -61,7 +62,8 @@ const Faculties = ({ did }: { did: string }) => {
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </Table> */}
+      <FacultyTable data={facultiesData?.all_staff} name="Faculties" />
     </div>
   );
 };

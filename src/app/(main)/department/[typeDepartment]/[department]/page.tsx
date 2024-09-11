@@ -19,6 +19,7 @@ import ActivitiesTable from "./_ui/activities";
 import ContactCard from "./_ui/contact-us";
 import Link from "next/link";
 import Labrotory from "./_ui/labrotory";
+import { Separator } from "@/components/ui/separator";
 
 const Department = () => {
   const [selectedContent, setSelectedContent] = useState("about");
@@ -30,8 +31,9 @@ const Department = () => {
   const [currentDepartment, setCurrentDepartment] = useState();
   console.log(param);
   // fetching the department data from the API
-  const { data: departmentSiteInfo } = useDepartmentSiteInfo(did);
+  const { data: departmentSiteInfo } = useDepartmentSiteInfo(did as string);
   const { data: AllDepartment } = useAllDepartments(id);
+  console.log(AllDepartment);
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
 
@@ -42,7 +44,7 @@ const Department = () => {
   useEffect(() => {
     if (AllDepartment?.institute?.depart) {
       const department = AllDepartment.institute.depart.find(
-        (item) => did === item?._id
+        (item: any) => did === item?._id
       );
       setCurrentDepartment(department);
     }
@@ -62,7 +64,7 @@ const Department = () => {
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 bg-background p-4`}
+        } md:block w-full md:w-64 bg-gray-100 p-4`}
       >
         <ul>
           {sidebar.map((item, index) => (
@@ -71,10 +73,10 @@ const Department = () => {
                 href={`/department/${typeDepartment}/${did}?tab=${item.url}`}
               >
                 <button
-                  className={`w-full text-left p-4 hover:bg-primary hover:text-secondary focus:bg-primary focus:text-secondary transition-colors shadow-md bg-card rounded-sm ${
+                  className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
                     selectedContent === item.url
-                      ? "bg-primary text-secondary"
-                      : ""
+                      ? "border-primary font-semibold text-primary border-b-2 "
+                      : "border-transparent"
                   }`}
                   onClick={() => setSelectedContent(item.url)}
                 >
@@ -85,7 +87,10 @@ const Department = () => {
           ))}
         </ul>
       </div>
-
+      <Separator
+        orientation="vertical"
+        className="mx-2 border-[1px] border-gray-100 h-screen"
+      />
       {/* Main content */}
       <div className="flex-1 p-6">
         {selectedContent === "about" ? (
@@ -105,7 +110,7 @@ const Department = () => {
             hodDetails={currentDepartment}
           />
         ) : selectedContent === "faculties" ? (
-          <Faculties did={did} />
+          <Faculties did={did! as string} />
         ) : selectedContent === "syllabus" ? (
           <Syllabus syllabus={departmentSiteInfo?.department_site?.syllabus} />
         ) : selectedContent === "laboratory" ? (
@@ -119,9 +124,9 @@ const Department = () => {
             data={departmentSiteInfo?.department_site?.student_achievements}
           />
         ) : selectedContent === "mou-collaboration" ? (
-          <MouCollaboration did={did} />
+          <MouCollaboration did={did as string} />
         ) : selectedContent === "activities" ? (
-          <ActivitiesTable did={did} />
+          <ActivitiesTable did={did as string} />
         ) : selectedContent === "innovative-practices" ? (
           <InnovativePractices
             data={departmentSiteInfo?.department_site?.innovative_practices}

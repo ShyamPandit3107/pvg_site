@@ -4,6 +4,7 @@ import { useStore } from "@/store";
 import { Menu } from "lucide-react";
 import React, { useState } from "react";
 import ExamComponent from "./_ui/exam-component";
+import { Separator } from "@/components/ui/separator";
 
 const Examination = () => {
   const [selectedContent, setSelectedContent] = useState("Manual");
@@ -33,14 +34,16 @@ const Examination = () => {
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 bg-background p-4`}
+        } md:block w-full md:w-64 bg-gray-100 p-4`}
       >
         <ul>
           {sidebar.map((item, index) => (
             <li key={index} className="mb-2">
               <button
-                className={`w-full text-left p-4 hover:bg-primary hover:text-secondary focus:bg-primary focus:text-secondary transition-colors shadow-md bg-card rounded-sm ${
-                  selectedContent === item ? "bg-primary text-secondary" : ""
+                className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
+                  selectedContent === item
+                    ? "border-primary font-semibold text-primary border-b-2 "
+                    : "border-transparent"
                 }`}
                 onClick={() => handleContentSelect(item)}
               >
@@ -50,7 +53,10 @@ const Examination = () => {
           ))}
         </ul>
       </div>
-
+      <Separator
+        orientation="vertical"
+        className="mx-2 border-[1px] border-gray-100 h-screen"
+      />
       {/* Main content */}
       <div className="flex-1 p-6">
         {selectedContent === "Manual" ? (

@@ -11,7 +11,7 @@ import React from "react";
 const BestPractices = () => {
   const qcid = useStore((state) => state.qid);
   const { data: iqacDetails } = useIqacDetails({
-    id: qcid,
+    id: qcid as string,
     page: 1,
     limit: 1000,
     flow: "IQAC",

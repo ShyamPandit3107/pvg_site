@@ -5,6 +5,7 @@ import { useStore } from "@/store";
 import { Menu } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useAllEvents } from "@/api/api-hooks";
+import { Separator } from "@/components/ui/separator";
 
 const Events = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -18,7 +19,7 @@ const Events = () => {
   const [selectedContent, setSelectedContent] = useState(
     eid || allEvents?.all_events?.[0]._id
   );
-  const handleContentSelect = (item) => {
+  const handleContentSelect = (item: any) => {
     setSelectedContent(item);
     setIsSidebarOpen(false);
   };
@@ -39,16 +40,16 @@ const Events = () => {
         <div
           className={`${
             isSidebarOpen ? "block" : "hidden"
-          } md:block w-full md:w-64 bg-background p-4 h-[30rem] overflow-y-auto`}
+          } md:block w-full md:w-64 bg-gray-100 p-4 h-[30rem] overflow-y-auto`}
         >
           <ul>
-            {allEvents?.all_events?.map((item, index) => (
+            {allEvents?.all_events?.map((item: any, index: any) => (
               <li key={index} className="mb-2">
                 <button
-                  className={`w-full text-left p-4 hover:bg-primary hover:text-secondary focus:bg-primary focus:text-secondary transition-colors shadow-md bg-card rounded-sm ${
-                    selectedContent === item._id
-                      ? "bg-primary text-secondary"
-                      : ""
+                  className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
+                    selectedContent === item.url
+                      ? "border-primary font-semibold text-primary border-b-2 "
+                      : "border-transparent"
                   }`}
                   onClick={() => handleContentSelect(item?._id)}
                 >
@@ -58,7 +59,10 @@ const Events = () => {
             ))}
           </ul>
         </div>
-
+        <Separator
+          orientation="vertical"
+          className="mx-2 border-[1px] border-gray-100 h-screen"
+        />
         {/* Main content */}
         <div className="flex-1 p-6">
           <OneEvent evid={selectedContent} />

@@ -1,3 +1,4 @@
+"use client";
 import { useAllMergedDepartments } from "@/api/api-hooks";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,7 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-const Activities = () => {
+const Department = () => {
   const id = useStore((state) => state.id);
   const { data: allDepartments } = useAllMergedDepartments({
     id: id as string,
@@ -15,11 +16,12 @@ const Activities = () => {
     limit: 1000,
     search: "",
   });
-  console.log(allDepartments);
   return (
     <div>
-      <Heading className="mb-2">Activities</Heading>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <Heading className="mb-2 text-center my-2 mx-2 px-2">
+        All Department
+      </Heading>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 m-4">
         {allDepartments?.all_depart?.map((item: any) => (
           <Card className="w-full" key={item?._id}>
             <CardContent className="flex items-center justify-between p-6">
@@ -33,11 +35,7 @@ const Activities = () => {
                 // onClick={() => setViewPdf(item?.attach)}
                 className="border-primary hover:border-primary hover:border-[2px]  hover:text-primary "
               >
-                <Link
-                  href={`/department/redirect/${item?._id}?tab=mou-collaboration`}
-                >
-                  View
-                </Link>
+                <Link href={`/department/redirect/${item?._id}`}>View</Link>
               </Button>
             </CardContent>
           </Card>
@@ -47,4 +45,4 @@ const Activities = () => {
   );
 };
 
-export default Activities;
+export default Department;

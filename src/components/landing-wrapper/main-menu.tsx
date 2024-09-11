@@ -9,7 +9,11 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { useStore } from "@/store";
-import { useIqacAuthority, useWebsiteInfoByInstitute } from "@/api/api-hooks";
+import {
+  useIqacAuthority,
+  usePinnedDepartment,
+  useWebsiteInfoByInstitute,
+} from "@/api/api-hooks";
 import Image from "next/image";
 import { imageShowUrl } from "@/lib/BaseUrl";
 import PinDepartment from "./department/pin-department";
@@ -17,16 +21,37 @@ import { ListItem } from "../ui/list-item";
 import Link from "next/link";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 
-const MainMenu = ({ academicCourse }: { academicCourse: any }) => {
+// Define types
+interface AcademicCourse {
+  _id: string;
+  head_name: string;
+}
+
+interface AuthorityItem {
+  _id: string;
+  custom_head_name: string;
+}
+
+interface Committee {
+  id: string;
+  name: string;
+  url: string;
+}
+
+interface MainMenuProps {
+  academicCourse: AcademicCourse[];
+}
+
+const MainMenu = ({ academicCourse }: MainMenuProps) => {
   const qid = useStore((state) => state.ids.iqacId);
   const { data: iqacAuthority } = useIqacAuthority(qid);
   const { setQid, setRndId } = useStore();
-  const [uniqueCommittees, setUniqueCommittees] = useState<any>([]);
+  const [uniqueCommittees, setUniqueCommittees] = useState<Committee[]>([]);
 
   useEffect(() => {
     if (iqacAuthority) {
-      const newCommittees: { id: string; name: string; url: string }[] = [];
-      iqacAuthority.iqac.authority.forEach((item: any) => {
+      const newCommittees: Committee[] = [];
+      iqacAuthority.iqac.authority.forEach((item: AuthorityItem) => {
         if (item.custom_head_name === "IQAC") {
           setQid(item._id);
         } else if (item.custom_head_name === "RND") {
@@ -46,17 +71,23 @@ const MainMenu = ({ academicCourse }: { academicCourse: any }) => {
       setUniqueCommittees(uniqueCommittees);
     }
   }, [iqacAuthority, setQid, setRndId]);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openDropdowns, setOpenDropdowns] = useState({});
+  const [openDropdowns, setOpenDropdowns] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const id = useStore((state) => state.id);
-  const { data: websiteInfoByInstitute } = useWebsiteInfoByInstitute(id);
-
-  const toggleDropdown = (key) => {
+  // const { data: websiteInfoByInstitute } = useWebsiteInfoByInstitute(id);
+  const { data: unpinnedDepartment } = usePinnedDepartment({
+    id: id,
+    flow: "INDEPENDENT",
+  });
+  const toggleDropdown = (key: string) => {
     setOpenDropdowns((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
@@ -117,16 +148,7 @@ const MainMenu = ({ academicCourse }: { academicCourse: any }) => {
 
   return (
     <div className="w-full bg-white shadow-sm">
-      <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-        <div className="flex items-center">
-          <Image
-            src={`${imageShowUrl}/${websiteInfoByInstitute?.one_ins?.website_looks?.logo}`}
-            alt="Logo"
-            width={75}
-            height={75}
-          />
-        </div>
-
+      <div className="container mx-auto px-2 py-2 flex items-center justify-end">
         <button className="md:hidden z-50" onClick={toggleMobileMenu}>
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -179,10 +201,31 @@ const MainMenu = ({ academicCourse }: { academicCourse: any }) => {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <NavigationMenuTrigger>Department</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <PinDepartment />
+                  </NavigationMenuContent>
+                </NavigationMenuItem> */}
+              </NavigationMenuList>
+            </NavigationMenu>
+
+            <NavigationMenu>
+              <NavigationMenuList className="flex space-x-2">
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Department</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    {/* <PinDepartment /> */}
+                    <ul className="w-[230px] p-2 grid grid-cols-1">
+                      {unpinnedDepartment &&
+                        unpinnedDepartment.ins.map((department: any) => (
+                          <ListItem
+                            href={`/department/other/${department?._id}`}
+                            key={department?._id}
+                            title={department?.dName}
+                          ></ListItem>
+                        ))}
+                    </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               </NavigationMenuList>

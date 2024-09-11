@@ -83,3 +83,36 @@
     @apply bg-background text-foreground;
   }
 }
+.marquee-container {
+  white-space: nowrap;
+}
+
+.marquee {
+  /* display: inline-block; */
+  animation: marquee 30s linear infinite;
+}
+
+.marquee.paused {
+  animation-play-state: paused;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+}
+
+.marquee-content li {
+  display: inline-block;
+  /* padding: 10px 20px; */
+  /* background: #fff; */
+  margin-right: 20px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

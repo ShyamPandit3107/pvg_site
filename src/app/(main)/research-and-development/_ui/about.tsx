@@ -20,7 +20,7 @@ const About = ({ about }: { about: any }) => {
   const rndId = useStore((state) => state.rndId);
   console.log(rndId);
   const { data: iqacComposition } = useIqacComposition({
-    qcid: rndId,
+    qcid: rndId as string,
     page: 1,
     limit: 1000,
   });

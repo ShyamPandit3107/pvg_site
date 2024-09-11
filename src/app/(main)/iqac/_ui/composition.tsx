@@ -15,7 +15,7 @@ import ImageViewer from "@/components/ui/image-viewer";
 const Composition = () => {
   const qid = useStore((state) => state.qid);
   const { data: compostion } = useIqacComposition({
-    qcid: qid,
+    qcid: qid as string,
     page: 1,
     limit: 1000,
   });

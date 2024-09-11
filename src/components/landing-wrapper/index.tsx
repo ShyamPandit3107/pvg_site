@@ -7,6 +7,9 @@ import { TopMenu } from "./top-menu";
 import MainMenu from "./main-menu";
 import tinycolor from "tinycolor2";
 import Footer from "./footer";
+import InsInfo from "./ins-info";
+import News from "./news";
+import { Megaphone, Siren } from "lucide-react";
 
 const convertHsl = (hsl: string) => {
   const hslValues = hsl.slice(4, -1);
@@ -62,7 +65,7 @@ const LandingWrapper = ({ children }: { children: React.ReactNode }) => {
     useInstituteMaster(id);
   const { data: websiteInfoByInstitute, isFetched: isWebsiteInfoFetched } =
     useWebsiteInfoByInstitute(id);
-
+  console.log(websiteInfoByInstitute);
   const { setIds, setColor } = useStore();
 
   useEffect(() => {
@@ -100,16 +103,38 @@ const LandingWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="flex flex-col min-h-screen">
       <TopMenu />
+      <InsInfo
+        logo={websiteInfoByInstitute?.one_ins?.website_looks?.logo}
+        name={websiteInfoByInstitute?.one_ins?.insName}
+        address={websiteInfoByInstitute?.one_ins?.insAddress}
+        affiliated={websiteInfoByInstitute?.one_ins?.insAffiliated}
+        phone={websiteInfoByInstitute?.one_ins?.insPhoneNumber}
+        email={websiteInfoByInstitute?.one_ins?.insEmail}
+      />
       <MainMenu
         academicCourse={
           websiteInfoByInstitute?.one_ins?.landing_control
             ?.academic_courses_desk
         }
       />
+      <News newsItems={newsItems} />
       <div className="flex-grow">{children}</div>
       <Footer instituteAbout={websiteInfoByInstitute?.one_ins} />
+      {/* <Megaphone /> */}
     </main>
   );
 };
 
 export default LandingWrapper;
+const newsItems = [
+  "1300 Placement in 4 Years",
+  "IPEV Road Drive by Indian Air Force",
+  "CreTechNova2K23",
+  "Capgemini Digital Lab Inauguration",
+  "SPPU Ph.D. ENTC Approved List for Admission",
+  "1300 Placement in 4 Years",
+  "IPEV Road Drive by Indian Air Force",
+  "CreTechNova2K23",
+  "Capgemini Digital Lab Inauguration",
+  "SPPU Ph.D. ENTC Approved List for Admission",
+];

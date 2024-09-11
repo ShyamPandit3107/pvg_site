@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Ipp from "./_ui/ipp";
 import NaacPdf from "./_ui/naac-pdf";
+import { Separator } from "@/components/ui/separator";
 
 const Naac = () => {
   const [selectedContent, setSelectedContent] = useState("ipp");
@@ -41,16 +42,16 @@ const Naac = () => {
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 bg-background p-4`}
+        } md:block w-full md:w-64 bg-gray-100 p-4`}
       >
         <ul>
           {sidebar.map((item, index) => (
             <li key={index} className="mb-2">
               <Link
-                className={`w-full text-left block p-4 hover:bg-primary hover:text-secondary focus:bg-primary focus:text-secondary transition-colors shadow-md bg-card rounded-sm ${
+                className={`w-full text-left p-4 m-1 block hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
                   selectedContent === item.url
-                    ? "bg-primary text-secondary"
-                    : ""
+                    ? "border-primary font-semibold text-primary border-b-2 "
+                    : "border-transparent"
                 }`}
                 href={`/naac?tab=${item.url}`}
               >
@@ -60,7 +61,10 @@ const Naac = () => {
           ))}
         </ul>
       </div>
-
+      <Separator
+        orientation="vertical"
+        className="mx-2 border-[1px] border-gray-100 h-screen"
+      />
       {/* Main content */}
       <div className="flex-1 p-6">
         {selectedContent === "ipp" ? (

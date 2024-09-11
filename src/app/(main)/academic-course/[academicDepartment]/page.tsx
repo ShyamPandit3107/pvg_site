@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import About from "./_ui/about";
 import SubCourse from "./_ui/sub-course";
 import Heading from "@/components/ui/heading";
+import { Separator } from "@/components/ui/separator";
 
 interface SubHead {
   sub_head_title_main: string;
@@ -90,16 +91,16 @@ const AcademicCourse: React.FC = () => {
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 bg-background p-4`}
+        } md:block w-full md:w-64 bg-gray-100 p-4`}
       >
         <ul>
           {sidebar.map((item, index) => (
             <li key={index} className="mb-2">
               <button
-                className={`w-full text-left p-4 hover:bg-primary hover:text-secondary focus:bg-primary focus:text-secondary transition-colors shadow-md bg-card rounded-sm ${
+                className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
                   selectedContent.sub_head_title_main === item
-                    ? "bg-primary text-secondary"
-                    : ""
+                    ? "border-primary font-semibold text-primary border-b-2 "
+                    : "border-transparent"
                 }`}
                 onClick={() => handleContentSelect(item)}
               >
@@ -109,7 +110,10 @@ const AcademicCourse: React.FC = () => {
           ))}
         </ul>
       </div>
-
+      <Separator
+        orientation="vertical"
+        className="mx-2 border-[1px] border-gray-100 h-screen"
+      />
       {/* Main content */}
       <div className="flex-1 p-6">
         <Heading>{courses?.head_name}</Heading>
