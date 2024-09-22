@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import FacultyTable from "./_ui/faculty-table";
 import { Separator } from "@/components/ui/separator";
+import Heading from "@/components/ui/heading";
 
 const Faculties = () => {
   const [selectedContent, setSelectedContent] = useState("Teaching Faculty");
@@ -30,21 +31,37 @@ const Faculties = () => {
   };
   useEffect(() => {
     if (faculties?.staffIns.length > 0) {
-      setTeaching(
-        faculties?.staffIns?.filter(
-          (item: any) => item?.teaching_type === "Teaching Faculty"
-        )
+      // setTeaching(
+      //   faculties?.staffIns?.filter(
+      //     (item: any) => item?.teaching_type === "Teaching Faculty"
+      //   )
+      // );
+      // setNonTeaching(
+      //   faculties?.staffIns?.filter(
+      //     (item: any) => item?.teaching_type === "Non-Teaching Faculty"
+      //   )
+      // );
+      // setOther(
+      //   faculties?.staffIns?.filter(
+      //     (item: any) => item?.teaching_type === "Other" || !item?.teaching_type
+      //   )
+      // );
+      const ans = faculties.staffIns.reduce(
+        (acc: any, curr: any) => {
+          if (curr.teaching_type === "Teaching Faculty") {
+            acc.teaching.push(curr);
+          } else if (curr.teaching_type === "Non-Teaching Faculty") {
+            acc.nonteaching.push(curr);
+          } else {
+            acc.other.push(curr);
+          }
+          return acc;
+        },
+        { teaching: [], nonteaching: [], other: [] }
       );
-      setNonTeaching(
-        faculties?.staffIns?.filter(
-          (item: any) => item?.teaching_type === "Non-Teaching Faculty"
-        )
-      );
-      setOther(
-        faculties?.staffIns?.filter(
-          (item: any) => item?.teaching_type === "Other" || !item?.teaching_type
-        )
-      );
+      setTeaching(ans.teaching);
+      setNonTeaching(ans.nonteaching);
+      setOther(ans.other);
     }
   }, [faculties?.staffIns]);
   return (
@@ -82,16 +99,25 @@ const Faculties = () => {
       </div>
       <Separator
         orientation="vertical"
-        className="mx-2 border-[1px] border-gray-100 h-screen"
+        className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
       />
       {/* Main content */}
-      <div className="flex-1 p-6">
+      <div className="">
         {selectedContent === "Teaching Faculty" ? (
-          <FacultyTable data={teaching} name="Teaching Faculty" />
+          <div>
+            <Heading className="mb-2">Teaching Faculty</Heading>
+            <FacultyTable data={teaching} name="Teaching Faculty" />
+          </div>
         ) : selectedContent === "Non-Teaching Faculty" ? (
-          <FacultyTable data={nonteaching} name="Non-Teaching Faculty" />
+          <div>
+            <Heading className="mb-2">Teaching Faculty</Heading>
+            <FacultyTable data={nonteaching} name="Non-Teaching Faculty" />
+          </div>
         ) : (
-          <FacultyTable data={other} name="Other" />
+          <div>
+            <Heading className="mb-2">Teaching Faculty</Heading>
+            <FacultyTable data={other} name="Other" />
+          </div>
         )}
       </div>
     </div>

@@ -25,11 +25,16 @@ import Heading from "../ui/heading";
 import Image from "next/image";
 import { imageShowUrl } from "@/lib/BaseUrl";
 import Content from "../ui/content";
+import SubHeading from "../ui/sub-heading";
 
 const EventAccrediationVisionMission = ({
   iso_certificate,
+  vision,
+  mission,
 }: {
   iso_certificate: any;
+  vision: any;
+  mission: any;
 }) => {
   const eid = useStore((state) => state.ids.eventId);
   const { data: allEvents } = useAllEvents(eid);
@@ -85,30 +90,35 @@ const EventAccrediationVisionMission = ({
     // Add more notices as needed
   ];
   return (
-    <div className="sm:m-10 m-2">
-      <div className="flex justify-between items-center  flex-col md:flex-row">
-        <Card className="w-full max-w-md h-[350px] bg-background">
-          <Heading>Upcoming Events</Heading>
-          <CardContent className="p-0 bg-background">
-            <ScrollArea className="h-[300px] w-full rounded-md border">
+    <div className="sm:m-10 m-2 ">
+      <div className="flex justify-between items-center  flex-col md:flex-row h-fit">
+        <div className=" w-full max-w-md  bg-background shadow-md md:mt-0 mt-10">
+          <SubHeading className="font-extrabold text-[1.5rem]">
+            Upcoming Events
+          </SubHeading>
+          <div className="p-0 bg-background inseventsbox">
+            <div className="scrollList">
               {allEvents?.all_events?.map((event: any) => (
-                <div
+                <Link
                   key={event._id}
+                  href={`/events?eid=${event._id}`}
                   className="flex items-center p-4 border-b last:border-b-0"
                 >
                   <div className="flex-grow pr-4">
-                    <p className="text-sm font-medium">{event.event_name}</p>
+                    <p className=" font-medium">{event.event_name}</p>
                   </div>
-                  <div className="flex-shrink-0">
-                    <Eye className="h-5 w-5 text-blue-500" />
+                  <div className="flex-shrink-0 bg-primary p-1 rounded-md">
+                    <Eye className="h-5 w-5 text-primary-foreground " />
                   </div>
-                </div>
+                </Link>
               ))}
-            </ScrollArea>
-          </CardContent>
-        </Card>
-        <Card className="w-full max-w-md h-[350px] bg-background">
-          <Heading className="mb-2">Affiliation</Heading>
+            </div>
+          </div>
+        </div>
+        <Card className="w-full max-w-md h-fit bg-background shadow-md md:mt-0 mt-10">
+          <SubHeading className="font-extrabold text-[1.5rem]">
+            Affiliation
+          </SubHeading>
           <CardContent className="p-0 bg-background">
             <div className="grid grid-cols-2 gap-4 justify-center items-center mb-2">
               {iso_certificate?.map((certificate: any) => (
@@ -138,11 +148,24 @@ const EventAccrediationVisionMission = ({
             </div>
           </CardContent>
         </Card>
-        <Card className="w-full max-w-md h-[350px] bg-background">
-          <Heading>Our Vision</Heading>
-          <Content>this is vision</Content>
-          <Heading>Our Mission</Heading>
-          <Content>this is mission</Content>
+        <Card className="w-full max-w-md h-[350px] bg-background shadow-md md:mt-0 mt-10">
+          <SubHeading className="font-extrabold text-[1.5rem]">
+            Our Vision
+          </SubHeading>
+          <Content>{vision}</Content>
+          <SubHeading className="font-extrabold text-[1.5rem]">
+            Our Mission
+          </SubHeading>
+          <Content>{mission}</Content>
+          <CardFooter className="flex justify-end items-end mt-10">
+            <Link
+              href="/department"
+              className="self-end text-primary b text-base sm:text-lg underline flex items-center mt-4 sm:mt-0"
+            >
+              Read More
+              <ArrowUpRight className="ml-1" />
+            </Link>
+          </CardFooter>
         </Card>
       </div>
     </div>

@@ -28,11 +28,8 @@ const FounderMessage = ({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-col-reverse sm:flex-row justify-center items-center gap-4">
-          <div className="sm:w-4/5 w-full">
-            {message && <Content>{message}</Content>}
-          </div>
-          <div className="sm:w-1/5 w-full flex flex-col items-center justify-center text-center">
+        <div className="flex flex-col  justify-center items-center gap-4">
+          <div className="w-full flex flex-col items-center justify-center text-center">
             <ImageViewer
               src={`${imageShowUrl}/${image}`}
               alt="founder image"
@@ -42,6 +39,9 @@ const FounderMessage = ({
 
             <h3 className="text-lg font-semibold mt-2 text-primary">{name}</h3>
             <p className="text-sm text-muted-foreground">{designation}</p>
+          </div>
+          <div className=" w-full">
+            {message && <Content>{message}</Content>}
           </div>
         </div>
       </CardContent>

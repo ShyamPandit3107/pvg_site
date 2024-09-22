@@ -17,27 +17,32 @@ const Notices = () => {
     limit: 1000,
   });
   const searchParams = useSearchParams();
-  // console.log(searchParams);
-  const nid = searchParams.get("nid");
-  console.log(nid);
-  const [selectedContent, setSelectedContent] = useState(
-    nid || notices?.announcement?.[0]._id
-  );
+  const nid = searchParams.get("nid"); // Get 'nid' from URL params
+  const [selectedContent, setSelectedContent] = useState<string | null>(null);
+
   useEffect(() => {
-    if (notices?.announcement && !nid) {
-      setSelectedContent(notices?.announcement?.[0]._id);
+    if (notices?.announcement) {
+      if (nid) {
+        // If 'nid' is provided in the URL, set the selected content to that notice
+        setSelectedContent(nid);
+      } else {
+        // If no 'nid', default to the first notice
+        setSelectedContent(notices.announcement[0]._id);
+      }
     }
   }, [nid, notices?.announcement]);
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
   const handleContentSelect = (item: any) => {
     setSelectedContent(item);
     setIsSidebarOpen(false);
   };
-  console.log(notices);
+
   return (
-    <div className="flex flex-col md:flex-row border-t-1 border-back ">
+    <div className="flex flex-col md:flex-row border-t-1 border-back">
       {/* Mobile menu button */}
       <button
         className="md:hidden p-4 bg-background text-primary"
@@ -47,26 +52,26 @@ const Notices = () => {
       </button>
       <Separator
         orientation="vertical"
-        className="mx-2 border-[1px] border-gray-100 h-screen"
+        className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
       />
       {/* Sidebar */}
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        }md:block w-full md:w-64 bg-gray-100 p-4 h-[30rem] overflow-y-auto`}
+        } md:block w-full md:w-64 bg-gray-100 p-4 h-[30rem] overflow-y-auto`}
       >
         <ul>
           {notices?.announcement?.map((item: any, index: any) => (
             <li key={index} className="mb-2">
               <button
-                className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
-                  selectedContent === item.url
-                    ? "border-primary font-semibold text-primary border-b-2 "
+                className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2 hover:border-primary duration-300 ${
+                  selectedContent === item._id
+                    ? "border-primary font-semibold text-primary"
                     : "border-transparent"
                 }`}
-                onClick={() => handleContentSelect(item?._id)}
+                onClick={() => handleContentSelect(item._id)}
               >
-                {item?.insAnnTitle}
+                {item.insAnnTitle}
               </button>
             </li>
           ))}
@@ -75,7 +80,7 @@ const Notices = () => {
 
       {/* Main content */}
       <div className="flex-1 p-6">
-        <OneNotices id={selectedContent} />
+        {selectedContent && <OneNotices id={selectedContent} />}
       </div>
     </div>
   );

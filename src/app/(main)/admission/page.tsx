@@ -93,7 +93,7 @@ const AdmissionPage = () => {
       </div>
       <Separator
         orientation="vertical"
-        className="mx-2 border-[1px] border-gray-100 h-screen"
+        className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
       />
       {/* Main content */}
       <div className="flex-1 p-6">

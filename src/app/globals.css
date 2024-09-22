@@ -116,3 +116,23 @@
     transform: translateX(-100%);
   }
 }
+.inseventsbox {
+  height: 20rem;
+  width: 100%;
+  overflow: hidden;
+}
+.scrollList {
+  animation: scrollAnimation 50000ms linear infinite;
+}
+.scrollList:hover {
+  animation-play-state: paused !important;
+}
+@keyframes scrollAnimation {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(calc(-100% + 25rem));
+  }
+}

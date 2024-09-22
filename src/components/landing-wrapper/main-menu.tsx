@@ -149,7 +149,10 @@ const MainMenu = ({ academicCourse }: MainMenuProps) => {
   return (
     <div className="w-full bg-white shadow-sm">
       <div className="container mx-auto px-2 py-2 flex items-center justify-end">
-        <button className="md:hidden z-50" onClick={toggleMobileMenu}>
+        <button
+          className="md:hidden z-50 absolute top-[20px] right-[20px]"
+          onClick={toggleMobileMenu}
+        >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 

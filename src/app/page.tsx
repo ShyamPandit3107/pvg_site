@@ -11,6 +11,7 @@ import AchievementsSection from "@/components/home/achivement";
 const Home = () => {
   const id = useStore((state) => state.id);
   const { data: websiteInfoByInstitute } = useWebsiteInfoByInstitute(id);
+  console.log;
   return (
     <div className="w-full flex flex-col gap-4">
       {websiteInfoByInstitute?.one_ins?.landing_control?.home_background_object
@@ -29,6 +30,10 @@ const Home = () => {
             websiteInfoByInstitute?.one_ins?.landing_control
               ?.home_about_institute_object
           }
+          quick_links={
+            websiteInfoByInstitute?.one_ins?.landing_control
+              ?.home_opener_quick_links
+          }
         />
       )}
       {/* {websiteInfoByInstitute?.one_ins?.landing_control
@@ -46,9 +51,17 @@ const Home = () => {
           0,
           4
         )}
+        vision={
+          websiteInfoByInstitute?.one_ins?.website_looks?.vision.slice(0, 80) +
+          "..."
+        }
+        mission={
+          websiteInfoByInstitute?.one_ins?.website_looks?.mission.slice(0, 80) +
+          "..."
+        }
       />
-      <AchievementsSection />
-      <Testimonials />
+      {/* <AchievementsSection /> */}
+      <Testimonials data={websiteInfoByInstitute?.one_ins?.testimonials} />
     </div>
   );
 };

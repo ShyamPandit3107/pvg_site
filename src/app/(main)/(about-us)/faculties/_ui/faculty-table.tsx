@@ -48,20 +48,25 @@ const FacultyTable = ({ data, name }: { data: any; name: string }) => {
     //     ))}
     //   </TableBody>
     // </Table>
-    <div className="grid grid-cols-2 gap-4 mx-4 my-4">
+    <div className="grid grid-cols-1 gap-4 mx-4 my-4">
       {data?.map((item: any, index: any) => (
-        <Card key={index} className="bg-gray-100 shadow-md">
-          <CardContent className="w-full flex gap-1 p-4">
+        <Card key={index} className="bg-gray-100 shadow-md w-2/3 m-auto">
+          <CardContent className="w-full flex flex-col md:flex-row justify-center items-center gap-8 p-4">
             <div className="w-1/3 flex justify-center items-center ">
               <ImageViewer
-                width={100}
-                height={100}
-                alt="no image"
+                width={250}
+                height={250}
+                alt="/avtar.webp"
                 className="rounded-md"
-                src={`${imageShowUrl}/${item?.staffProfilePhoto}`}
+                src={`${
+                  // item?.staffProfilePhoto
+                  // ?
+                  imageShowUrl + "/" + item?.staffProfilePhoto
+                  // : "/avtar.webp"
+                }`}
               />
             </div>
-            <ul className="w-2/3 flex flex-col list-disc">
+            <ul className="w-2/3 flex flex-col list-disc text-lg">
               <li>
                 <strong>Name : </strong>
                 {`${item?.staffFirstName} ${item?.staffMiddleName} ${item?.staffLastName}`}

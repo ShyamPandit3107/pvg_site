@@ -23,7 +23,7 @@ const HomeDepartment = () => {
   });
 
   return (
-    <article className="m-4 sm:m-10 shadow-md border-[1px] border-gray-200 rounded-md">
+    <article className="m-4 sm:m-10 shadow-md border-[1px] border-gray-200 rounded-md bg-gray-50">
       <h1 className="text-center text-2xl sm:text-3xl text-primary font-bold my-4">
         Our Department
       </h1>

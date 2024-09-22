@@ -27,7 +27,7 @@ const CollapsibleDiv: React.FC<CollapsibleDivProps> = ({
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CollapsibleTrigger asChild>
           <CardHeader className="flex flex-row items-center justify-between p-2 bg-primary text-primary-foreground cursor-pointer">
-            <CardTitle className="text-lg">{item.batch?.batchName}</CardTitle>
+            <CardTitle className="text-lg">{item.org_name}</CardTitle>
             {isOpen ? (
               <ChevronUp className="h-4 w-4" />
             ) : (

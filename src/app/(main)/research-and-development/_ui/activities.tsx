@@ -33,9 +33,7 @@ const Activities = () => {
                 // onClick={() => setViewPdf(item?.attach)}
                 className="border-primary hover:border-primary hover:border-[2px]  hover:text-primary "
               >
-                <Link
-                  href={`/department/redirect/${item?._id}?tab=mou-collaboration`}
-                >
+                <Link href={`/department/redirect/${item?._id}?tab=activities`}>
                   View
                 </Link>
               </Button>

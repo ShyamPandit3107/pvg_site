@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import OneEvent from "./_ui/one-event";
 import { useStore } from "@/store";
 import { Menu } from "lucide-react";
@@ -10,24 +10,36 @@ import { Separator } from "@/components/ui/separator";
 const Events = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const eventId = useStore((state) => state.ids.eventId);
+  const searchParams = useSearchParams();
+  const eid = searchParams.get("eid"); // Get 'eid' from URL params
+
+  const { data: allEvents } = useAllEvents(eventId);
+  const [selectedContent, setSelectedContent] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (allEvents?.all_events) {
+      if (eid) {
+        // If 'eid' is provided in the URL, set the selected content to that event
+        setSelectedContent(eid);
+      } else {
+        // If no 'eid', default to the first event
+        setSelectedContent(allEvents.all_events[0]._id);
+      }
+    }
+  }, [eid, allEvents?.all_events]);
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  const searchParams = useSearchParams();
-  const eid = searchParams.get("eid");
-  const { data: allEvents } = useAllEvents(eventId);
-  const [selectedContent, setSelectedContent] = useState(
-    eid || allEvents?.all_events?.[0]._id
-  );
+
   const handleContentSelect = (item: any) => {
     setSelectedContent(item);
     setIsSidebarOpen(false);
   };
-  console.log(allEvents);
-  //   console.log(selectedContent);
+
   return (
     <div>
-      <div className="flex flex-col md:flex-row border-t-1 border-back ">
+      <div className="flex flex-col md:flex-row border-t-1 border-back">
         {/* Mobile menu button */}
         <button
           className="md:hidden p-4 bg-background text-primary"
@@ -46,12 +58,12 @@ const Events = () => {
             {allEvents?.all_events?.map((item: any, index: any) => (
               <li key={index} className="mb-2">
                 <button
-                  className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
-                    selectedContent === item.url
-                      ? "border-primary font-semibold text-primary border-b-2 "
+                  className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2 hover:border-primary duration-300 ${
+                    selectedContent === item._id
+                      ? "border-primary font-semibold text-primary"
                       : "border-transparent"
                   }`}
-                  onClick={() => handleContentSelect(item?._id)}
+                  onClick={() => handleContentSelect(item._id)}
                 >
                   {item?.event_name}
                 </button>
@@ -59,17 +71,18 @@ const Events = () => {
             ))}
           </ul>
         </div>
+
         <Separator
           orientation="vertical"
           className="mx-2 border-[1px] border-gray-100 h-screen"
         />
+
         {/* Main content */}
         <div className="flex-1 p-6">
-          <OneEvent evid={selectedContent} />
+          {selectedContent && <OneEvent evid={selectedContent} />}
         </div>
       </div>
     </div>
-    // <div>hi</div>
   );
 };
 

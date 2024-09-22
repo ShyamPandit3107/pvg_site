@@ -89,7 +89,7 @@ const Administration = () => {
       </div>
       <Separator
         orientation="vertical"
-        className="mx-2 border-[1px] border-gray-100 h-screen"
+        className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
       />
       {/* Main content */}
       <div className="flex-1 p-6">
@@ -100,13 +100,8 @@ const Administration = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col-reverse sm:flex-row justify-center items-center gap-4">
-              <div className="md:w-4/5 w-full">
-                {selectedContent?.leading_person_message && (
-                  <Content>{selectedContent.leading_person_message}</Content>
-                )}
-              </div>
-              <div className="sm:w-1/5 w-full flex flex-col items-center justify-center text-center">
+            <div className="flex flex-col  justify-center items-center gap-4">
+              <div className=" w-full flex flex-col items-center justify-center text-center">
                 {selectedContent?.leading_person?.profilePhoto && (
                   <ImageViewer
                     src={`${imageShowUrl}/${selectedContent.leading_person.profilePhoto}`}
@@ -122,6 +117,11 @@ const Administration = () => {
                 <p className="text-sm text-muted-foreground">
                   {selectedContent?.leading_person_position}
                 </p>
+              </div>
+              <div className="w-full">
+                {selectedContent?.leading_person_message && (
+                  <Content>{selectedContent.leading_person_message}</Content>
+                )}
               </div>
             </div>
           </CardContent>
