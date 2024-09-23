@@ -63,7 +63,10 @@ const Home = () => {
         }
       />
       {/* <AchievementsSection /> */}
-      <Testimonials data={websiteInfoByInstitute?.one_ins?.testimonials} />
+      {websiteInfoByInstitute?.one_ins?.testimonials &&
+      websiteInfoByInstitute?.one_ins?.testimonials.length > 0 ? (
+        <Testimonials data={websiteInfoByInstitute?.one_ins?.testimonials} />
+      ) : null}
     </div>
   );
 };

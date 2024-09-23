@@ -115,51 +115,53 @@ const EventAccrediationVisionMission = ({
             </div>
           </div>
         </div>
-        <Card className="w-full max-w-md h-fit bg-background shadow-md md:mt-0 mt-10">
-          <SubHeading className="font-extrabold text-[1.5rem]">
-            Affiliation
-          </SubHeading>
-          <CardContent className="p-0 bg-background">
-            <div className="grid grid-cols-2 gap-4 justify-center items-center mb-2">
-              {iso_certificate?.map((certificate: any) => (
-                <Card
-                  key={certificate?._id}
-                  className="relative overflow-hidden bg-background w-[145px]"
-                >
-                  <CardContent className="p-0 relative">
-                    <Image
-                      src={`${imageShowUrl}/${certificate.image}`}
-                      alt={`${certificate.name} logo`}
-                      width={150}
-                      height={150}
-                      // className="w-1/2 h-auto object-contain"
-                    />
-                    <div className="absolute bottom-0 left-0 bg-primary text-primary-foreground p-2 w-full text-center">
-                      <Link
-                        className="font-semibold block"
-                        href={certificate?.link}
-                      >
-                        {certificate.name}
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        {iso_certificate && iso_certificate.length > 0 ? (
+          <Card className="w-full max-w-md h-fit bg-background shadow-md md:mt-0 mt-10">
+            <SubHeading className="font-extrabold text-[1.5rem]">
+              Affiliation
+            </SubHeading>
+            <CardContent className="p-0 bg-background">
+              <div className="grid grid-cols-2 gap-4 justify-center items-center mb-2">
+                {iso_certificate?.map((certificate: any) => (
+                  <Card
+                    key={certificate?._id}
+                    className="relative overflow-hidden bg-background w-[145px]"
+                  >
+                    <CardContent className="p-0 relative">
+                      <Image
+                        src={`${imageShowUrl}/${certificate.image}`}
+                        alt={`${certificate.name} logo`}
+                        width={150}
+                        height={150}
+                        // className="w-1/2 h-auto object-contain"
+                      />
+                      <div className="absolute bottom-0 left-0 bg-primary text-primary-foreground p-2 w-full text-center">
+                        <Link
+                          className="font-semibold block"
+                          href={certificate?.link}
+                        >
+                          {certificate.name}
+                        </Link>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        ) : null}
         <Card className="w-full max-w-md h-[350px] bg-background shadow-md md:mt-0 mt-10">
           <SubHeading className="font-extrabold text-[1.5rem]">
             Our Vision
           </SubHeading>
-          <Content>{vision}</Content>
+          <Content>{vision ? vision : ""}</Content>
           <SubHeading className="font-extrabold text-[1.5rem]">
             Our Mission
           </SubHeading>
-          <Content>{mission}</Content>
+          <Content>{mission ? mission : ""}</Content>
           <CardFooter className="flex justify-end items-end mt-10">
             <Link
-              href="/department"
+              href="/institute?type=vision-mission"
               className="self-end text-primary b text-base sm:text-lg underline flex items-center mt-4 sm:mt-0"
             >
               Read More

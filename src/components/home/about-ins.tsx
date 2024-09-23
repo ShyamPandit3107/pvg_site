@@ -50,61 +50,88 @@ const AboutIns = ({
           </Button>
         </p>
       </div>
-      <div className="flex flex-col w-full">
-        <SubHeading className="font-extrabold text-[1.5rem]">
-          Quick Links
-        </SubHeading>
+      {quick_links && (
         <div className="flex flex-col w-full">
-          <div>
-            <Link
-              href={quick_links?.link_1?.link_images}
-              target="_blank"
-              className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
-            >
-              {quick_links?.link_1?.name}
-            </Link>
+          <SubHeading className="font-extrabold text-[1.5rem]">
+            Quick Links
+          </SubHeading>
 
-            <Link
-              href={quick_links?.link_2?.link_images}
-              target="_blank"
-              className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
-            >
-              {quick_links?.link_2?.name}
-            </Link>
+          <div className="flex flex-col w-full">
+            <div>
+              <Link
+                href={
+                  quick_links?.link_1?.link_images
+                    ? quick_links?.link_1?.link_images
+                    : "#"
+                }
+                target="_blank"
+                className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
+              >
+                {quick_links?.link_1?.name}
+              </Link>
 
-            <Link
-              href={quick_links?.link_3?.link_images}
-              target="_blank"
-              className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
-            >
-              {quick_links?.link_3?.name}
-            </Link>
-            <Link
-              href={quick_links?.link_4?.link_images}
-              target="_blank"
-              className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
-            >
-              {quick_links?.link_4?.name}
-            </Link>
+              <Link
+                href={
+                  quick_links?.link_2?.link_images
+                    ? quick_links?.link_2?.link_images
+                    : "#"
+                }
+                target="_blank"
+                className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
+              >
+                {quick_links?.link_2?.name}
+              </Link>
 
-            <Link
-              href={quick_links?.link_5?.link_images}
-              target="_blank"
-              className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
-            >
-              {quick_links?.link_5?.name}
-            </Link>
+              <Link
+                href={
+                  quick_links?.link_3?.link_images
+                    ? quick_links?.link_3?.link_images
+                    : "#"
+                }
+                target="_blank"
+                className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
+              >
+                {quick_links?.link_3?.name}
+              </Link>
+              <Link
+                href={
+                  quick_links?.link_4?.link_images
+                    ? quick_links?.link_4?.link_images
+                    : "#"
+                }
+                target="_blank"
+                className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
+              >
+                {quick_links?.link_4?.name}
+              </Link>
 
-            <Link
-              href={quick_links?.link_6?.link_images}
-              target="_blank"
-              className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
-            >
-              {quick_links?.link_6?.name}
-            </Link>
+              <Link
+                href={
+                  quick_links?.link_5?.link_images
+                    ? quick_links?.link_5?.link_images
+                    : "#"
+                }
+                target="_blank"
+                className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
+              >
+                {quick_links?.link_5?.name}
+              </Link>
+
+              <Link
+                href={
+                  quick_links?.link_6?.link_images
+                    ? quick_links?.link_6?.link_images
+                    : "#"
+                }
+                target="_blank"
+                className=" border-l-4 border-prime p-3 my-2 bg-gray-200 hover:text-prime w-full md:w-11/12 block"
+              >
+                {quick_links?.link_6?.name}
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
     // </div>
   );

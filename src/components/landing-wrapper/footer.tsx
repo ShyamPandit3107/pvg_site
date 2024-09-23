@@ -94,7 +94,10 @@ const Footer = ({ instituteAbout }: any) => {
                         </Link>
                       </li>
                       <li>
-                        <Link href="#" className="hover:underline">
+                        <Link
+                          href="admission?tab=about"
+                          className="hover:underline"
+                        >
                           Admission
                         </Link>
                       </li>
