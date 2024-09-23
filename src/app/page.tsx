@@ -52,12 +52,14 @@ const Home = () => {
           4
         )}
         vision={
-          websiteInfoByInstitute?.one_ins?.website_looks?.vision.slice(0, 80) +
+          websiteInfoByInstitute?.one_ins?.website_looks?.vision?.slice(0, 80) +
           "..."
         }
         mission={
-          websiteInfoByInstitute?.one_ins?.website_looks?.mission.slice(0, 80) +
-          "..."
+          websiteInfoByInstitute?.one_ins?.website_looks?.mission?.slice(
+            0,
+            80
+          ) + "..."
         }
       />
       {/* <AchievementsSection /> */}
