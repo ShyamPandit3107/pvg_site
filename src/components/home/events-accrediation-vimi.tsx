@@ -91,8 +91,8 @@ const EventAccrediationVisionMission = ({
   ];
   return (
     <div className="sm:m-10 m-2 ">
-      <div className="flex justify-between items-center  flex-col md:flex-row h-fit">
-        <div className=" w-full max-w-md  bg-background shadow-md md:mt-0 mt-10">
+      <div className="flex md:gap-10 items-center  flex-col md:flex-row h-fit p-2">
+        <div className=" w-full max-w-md  bg-background shadow-md rounded-lg md:mt-0 mt-10 h-[24rem]">
           <SubHeading className="font-extrabold text-[1.5rem]">
             Upcoming Events
           </SubHeading>
@@ -102,12 +102,12 @@ const EventAccrediationVisionMission = ({
                 <Link
                   key={event._id}
                   href={`/events?eid=${event._id}`}
-                  className="flex items-center p-4 border-b last:border-b-0"
+                  className="flex items-center p-4 border-b last:border-b-0 hover:underline hover:text-primary hover:font-semibold"
                 >
                   <div className="flex-grow pr-4">
                     <p className=" font-medium">{event.event_name}</p>
                   </div>
-                  <div className="flex-shrink-0 bg-primary p-1 rounded-md">
+                  <div className="flex-shrink-0 bg-primary p-1  rounded-md">
                     <Eye className="h-5 w-5 text-primary-foreground " />
                   </div>
                 </Link>
@@ -116,7 +116,7 @@ const EventAccrediationVisionMission = ({
           </div>
         </div>
         {iso_certificate && iso_certificate.length > 0 ? (
-          <Card className="w-full max-w-md h-fit bg-background shadow-md md:mt-0 mt-10">
+          <Card className="w-full max-w-md  bg-background shadow-md rounded-lg md:mt-0 mt-10">
             <SubHeading className="font-extrabold text-[1.5rem]">
               Affiliation
             </SubHeading>
@@ -150,7 +150,7 @@ const EventAccrediationVisionMission = ({
             </CardContent>
           </Card>
         ) : null}
-        <Card className="w-full max-w-md h-[350px] bg-background shadow-md md:mt-0 mt-10">
+        <Card className=" w-full max-w-md  bg-background shadow-md rounded-lg md:mt-0 mt-10 h-[24rem]">
           <SubHeading className="font-extrabold text-[1.5rem]">
             Our Vision
           </SubHeading>
