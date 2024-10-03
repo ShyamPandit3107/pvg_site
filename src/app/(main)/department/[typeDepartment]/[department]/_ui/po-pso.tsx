@@ -7,11 +7,13 @@ import React from "react";
 const PoPso = ({ data }: { data: any }) => {
   return (
     <div>
-      <Heading>Program Outcomes and Program Specific Outcomes</Heading>
+      <SubHeading className="text-2xl">
+        Program Outcomes and Program Specific Outcomes
+      </SubHeading>
       {data?.map((item: any) => (
         <Card className="bg-background shadow-none" key={item._id}>
           <CardContent>
-            <SubHeading>{item?.title}</SubHeading>
+            <SubHeading className="text-primary">{item?.title}</SubHeading>
             <div className="flex flex-col-reverse sm:flex-row justify-center items-center gap-4">
               <div className="w-full">
                 {item?.description && <Content>{item?.description}</Content>}

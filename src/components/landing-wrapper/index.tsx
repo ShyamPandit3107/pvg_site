@@ -99,12 +99,16 @@ const LandingWrapper = ({ children }: { children: React.ReactNode }) => {
   if (!isInstituteMasterFetched || !isWebsiteInfoFetched) {
     return <div>Loading...</div>;
   }
-
+  console.log(websiteInfoByInstitute?.one_ins?.website_looks?.logo);
   return (
     <main className="flex flex-col min-h-screen">
       <TopMenu />
       <InsInfo
-        logo={websiteInfoByInstitute?.one_ins?.website_looks?.logo}
+        logo={
+          websiteInfoByInstitute?.one_ins?.website_looks?.logo
+            ? websiteInfoByInstitute?.one_ins?.website_looks?.logo
+            : websiteInfoByInstitute?.one_ins?.insProfilePhoto
+        }
         name={websiteInfoByInstitute?.one_ins?.insName}
         address={websiteInfoByInstitute?.one_ins?.insAddress}
         affiliated={websiteInfoByInstitute?.one_ins?.insAffiliated}
@@ -117,7 +121,7 @@ const LandingWrapper = ({ children }: { children: React.ReactNode }) => {
             ?.academic_courses_desk
         }
       />
-      <News newsItems={newsItems} />
+      <News />
       <div className="flex-grow">{children}</div>
       <Footer instituteAbout={websiteInfoByInstitute?.one_ins} />
       {/* <Megaphone /> */}
@@ -126,15 +130,3 @@ const LandingWrapper = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default LandingWrapper;
-const newsItems = [
-  "1300 Placement in 4 Years",
-  "IPEV Road Drive by Indian Air Force",
-  "CreTechNova2K23",
-  "Capgemini Digital Lab Inauguration",
-  "SPPU Ph.D. ENTC Approved List for Admission",
-  "1300 Placement in 4 Years",
-  "IPEV Road Drive by Indian Air Force",
-  "CreTechNova2K23",
-  "Capgemini Digital Lab Inauguration",
-  "SPPU Ph.D. ENTC Approved List for Admission",
-];

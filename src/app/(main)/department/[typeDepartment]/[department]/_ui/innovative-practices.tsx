@@ -10,7 +10,7 @@ import React from "react";
 const InnovativePractices = ({ data }: { data: any }) => {
   return (
     <div className="flex flex-col">
-      <Heading>Innovative Practices</Heading>
+      <SubHeading className="text-2xl">Innovative Practices</SubHeading>
       {data?.map((item: any) => (
         <Card className="bg-background shadow-none" key={item._id}>
           <CardHeader>

@@ -8,6 +8,7 @@ import HomeDepartment from "@/components/home/home-department";
 import EventAccrediationVisionMission from "@/components/home/events-accrediation-vimi";
 import Testimonials from "@/components/home/alumini";
 import AchievementsSection from "@/components/home/achivement";
+import ImageLinks from "@/components/home/image-links";
 const Home = () => {
   const id = useStore((state) => state.id);
   const { data: websiteInfoByInstitute } = useWebsiteInfoByInstitute(id);
@@ -46,6 +47,12 @@ const Home = () => {
         />
       )} */}
       <HomeDepartment />
+      <ImageLinks
+        image_links={
+          websiteInfoByInstitute?.one_ins?.landing_control
+            ?.home_opener_background_object
+        }
+      />
       <EventAccrediationVisionMission
         iso_certificate={websiteInfoByInstitute?.one_ins?.iso_certificate.slice(
           0,

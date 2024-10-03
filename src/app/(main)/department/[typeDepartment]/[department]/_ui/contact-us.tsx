@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Heading from "@/components/ui/heading";
+import SubHeading from "@/components/ui/sub-heading";
 
 interface ContactInfo {
   _id: string;
@@ -30,7 +31,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ contacts }) => {
 
   return (
     <div>
-      <Heading className="mb-2">Contacts</Heading>
+      <SubHeading className="text-2xl">Contacts</SubHeading>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {contacts.map((contact) => (
           <Card key={contact._id}>

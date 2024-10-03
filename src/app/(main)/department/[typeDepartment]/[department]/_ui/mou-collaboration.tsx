@@ -5,6 +5,7 @@ import Heading from "@/components/ui/heading";
 import { FileIcon } from "lucide-react";
 import React from "react";
 import OneMou from "./one-mou";
+import SubHeading from "@/components/ui/sub-heading";
 
 const MouCollaboration = ({ did }: { did: string }) => {
   const [mou, setMou] = React.useState<any>();
@@ -16,7 +17,7 @@ const MouCollaboration = ({ did }: { did: string }) => {
   });
   return (
     <div className="space-y-4">
-      <Heading>MOU and Collaborations</Heading>
+      <SubHeading className="text-2xl">MOU and Collaborations</SubHeading>
       {mou ? (
         <OneMou setActive={setMou} id={did} batch={mou} />
       ) : (

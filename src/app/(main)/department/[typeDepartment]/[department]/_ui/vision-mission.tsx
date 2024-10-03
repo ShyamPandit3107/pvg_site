@@ -1,5 +1,5 @@
 import Content from "@/components/ui/content";
-import Heading from "@/components/ui/heading";
+import SubHeading from "@/components/ui/sub-heading";
 import React from "react";
 
 const VisionMission = ({
@@ -12,11 +12,11 @@ const VisionMission = ({
   return (
     <div className="flex flex-col ">
       <div className="my-2">
-        <Heading className="mb-2">Vision</Heading>
+        <SubHeading className="text-2xl">Vision</SubHeading>
         <Content>{vision}</Content>
       </div>
       <div className="my-2">
-        <Heading className="mb-2">Mission</Heading>
+        <SubHeading className="text-2xl">Mission</SubHeading>
         <Content>{mission}</Content>
       </div>
     </div>

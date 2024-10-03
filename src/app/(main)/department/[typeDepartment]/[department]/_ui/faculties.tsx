@@ -2,6 +2,7 @@ import { useDepartmentAllStaff } from "@/api/api-hooks";
 import FacultyTable from "@/app/(main)/(about-us)/faculties/_ui/faculty-table";
 import Heading from "@/components/ui/heading";
 import ImageViewer from "@/components/ui/image-viewer";
+import SubHeading from "@/components/ui/sub-heading";
 import {
   Table,
   TableBody,
@@ -22,7 +23,7 @@ const Faculties = ({ did }: { did: string }) => {
   console.log(facultiesData);
   return (
     <div>
-      <Heading className="mb-2">Faculties</Heading>
+      <SubHeading className="text-2xl">Faculties</SubHeading>
       {/* <Table className="border-black/80 border-[1px]">
         <TableHeader className="bg-primary text-primary-foreground">
           <TableRow>

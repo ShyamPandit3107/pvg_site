@@ -2,13 +2,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Content from "@/components/ui/content";
 import Heading from "@/components/ui/heading";
 import ImageViewer from "@/components/ui/image-viewer";
+import SubHeading from "@/components/ui/sub-heading";
 import { imageShowUrl } from "@/lib/BaseUrl";
 import Image from "next/image";
 import React from "react";
 const StudentAchievement = ({ data }: { data: any }) => {
   return (
     <div>
-      <Heading>Student Achivement</Heading>
+      <SubHeading className="text-2xl">Student Achivement</SubHeading>
       {data?.map((item: any) => (
         <Card className="bg-background shadow-none" key={item._id}>
           <CardHeader>

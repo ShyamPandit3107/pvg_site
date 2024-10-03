@@ -8,7 +8,7 @@ import { useStore } from "@/store";
 import Link from "next/link";
 import { Separator } from "@radix-ui/react-menubar";
 
-const NewsTicker = ({ newsItems }: any) => {
+const NewsTicker = () => {
   const [isPaused, setIsPaused] = useState(false);
 
   const id = useStore((state) => state.id);

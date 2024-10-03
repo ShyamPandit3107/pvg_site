@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Content from "@/components/ui/content";
 import Heading from "@/components/ui/heading";
 import ImageViewer from "@/components/ui/image-viewer";
+import SubHeading from "@/components/ui/sub-heading";
 import { imageShowUrl } from "@/lib/BaseUrl";
 import Image from "next/image";
 import React from "react";
@@ -17,7 +18,7 @@ const HodMessage = ({
     <Card className="bg-background shadow-none">
       <CardHeader>
         <CardTitle>
-          <Heading>HOD Message</Heading>
+          <SubHeading className="text-2xl">HOD Message</SubHeading>
         </CardTitle>
       </CardHeader>
       <CardContent>

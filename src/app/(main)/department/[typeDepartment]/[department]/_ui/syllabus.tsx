@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Heading from "@/components/ui/heading";
 import PDFViewer from "@/components/ui/PDFViewer";
+import SubHeading from "@/components/ui/sub-heading";
 import { FileIcon } from "lucide-react";
 import React, { useState } from "react";
 
@@ -10,7 +11,7 @@ const Syllabus = ({ syllabus }: { syllabus: any }) => {
   console.log(syllabus);
   return (
     <div className="space-y-4">
-      <Heading>Syllabus</Heading>
+      <SubHeading className="text-2xl">Syllabus</SubHeading>
       {viewPdf ? (
         <PDFViewer file={viewPdf} setActive={setViewPdf} />
       ) : (

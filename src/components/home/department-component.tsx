@@ -12,6 +12,7 @@ import { Button } from "../ui/button";
 import { useDepartmentSiteInfo } from "@/api/api-hooks";
 import TruncateText from "../ui/truncate";
 import { GraduationCap } from "lucide-react";
+import Image from "next/image";
 
 const DepartmentComponent = ({ did, name }: { did: string; name: string }) => {
   const { data: departmentInfo } = useDepartmentSiteInfo(did);
@@ -19,7 +20,10 @@ const DepartmentComponent = ({ did, name }: { did: string; name: string }) => {
   return (
     <Card className="bg-background shadow-md m-2 sm:m-4">
       <CardHeader className=" mb-2 flex flex-col items-center justify-center">
-        <GraduationCap size={48} />
+        {/* <GraduationCap size={48} /> */}
+        <div className="flex items-center justify-center rounded-full p-4 bg-gray-100">
+          <Image src="/departmentLogo.png" alt="logo" width={38} height={38} />
+        </div>
         {/* <CardTitle className="text-center text-xl mb-1">{name}</CardTitle> */}
       </CardHeader>
       <CardContent className="h-[150px] sm:h-[200px] flex flex-col items-center justify-center text-xs sm:text-sm relative">

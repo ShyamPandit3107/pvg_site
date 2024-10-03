@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { useRndActivities } from "@/api/api-hooks";
 import OneActivities from "./one-activities";
 import Heading from "@/components/ui/heading";
+import SubHeading from "@/components/ui/sub-heading";
 
 interface Activity {
   _id: string;
@@ -48,7 +49,7 @@ const ActivitiesTable: React.FC<ActiviteisProps> = ({
 
   return (
     <div className="container mx-auto py-10">
-      <Heading className="mb-4">Activities</Heading>
+      <SubHeading className="text-2xl">Activities</SubHeading>
       <div className="rounded-md border">
         <Table className="border-black/80 border-[1px]">
           <TableHeader className="bg-primary text-primary-foreground">
