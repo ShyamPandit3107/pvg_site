@@ -14,6 +14,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "d3dqpu54js2vfl.cloudfront.net",
       },
+      {
+        protocol: "https",
+        hostname: "dpu.edu.in",
+      },
     ],
   },
 };

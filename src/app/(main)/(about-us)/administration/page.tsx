@@ -3,6 +3,7 @@ import { useWebsiteInfoByInstitute } from "@/api/api-hooks";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Content from "@/components/ui/content";
 import Heading from "@/components/ui/heading";
+import HeadingWithImage from "@/components/ui/heading-with-image";
 import ImageViewer from "@/components/ui/image-viewer";
 import { Separator } from "@/components/ui/separator";
 import { imageShowUrl } from "@/lib/BaseUrl";
@@ -55,7 +56,7 @@ const Administration = () => {
   }, [websiteInfoByInstitute?.one_ins?.landing_control?.administration_object]);
 
   return (
-    <div className="flex flex-col md:flex-row border-t-1 border-back">
+    <div className="flex flex-col">
       {/* Mobile menu button */}
       <button
         className="md:hidden p-4 bg-background text-primary"
@@ -63,45 +64,44 @@ const Administration = () => {
       >
         <Menu size={24} />
       </button>
-
       {/* Sidebar */}
-      <div
-        className={`${
-          isSidebarOpen ? "block" : "hidden"
-        }  md:block w-full md:w-64 bg-gray-100 p-4`}
-      >
-        <ul>
-          {administration.map((item, index) => (
-            <li key={index} className="mb-2">
-              <button
-                className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
-                  selectedContent === item
-                    ? "border-primary font-semibold text-primary border-b-2 "
-                    : "border-transparent"
-                }`}
-                onClick={() => handleContentSelect(item)}
-              >
-                {item.leading_person_position}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <Separator
-        orientation="vertical"
-        className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
-      />
-      {/* Main content */}
-      <div className="flex-1 p-6">
-        <Card className="bg-background shadow-none">
-          <CardHeader>
-            <CardTitle>
-              <Heading>Administration</Heading>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col  justify-center items-center gap-4">
-              <div className=" w-full flex flex-col items-center justify-center text-center">
+      <HeadingWithImage>Administration</HeadingWithImage>
+      <div className="flex flex-col md:flex-row ">
+        <div
+          className={`${
+            isSidebarOpen ? "block" : "hidden"
+          }  md:block w-full md:w-72 bg-gray-100 p-4`}
+        >
+          <ul>
+            {administration.map((item, index) => (
+              <li key={index} className="mb-2">
+                <button
+                  className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
+                    selectedContent === item
+                      ? "border-primary font-semibold text-primary border-b-2 "
+                      : "border-transparent"
+                  }`}
+                  onClick={() => handleContentSelect(item)}
+                >
+                  {item.leading_person_position}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Separator
+          orientation="vertical"
+          className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
+        />
+        {/* Main content */}
+
+        <div className="flex flex-col w-full">
+          <Heading className="mb-2">
+            {selectedContent?.leading_person_position}
+          </Heading>
+          <div>
+            <div className="flex md:inline md:float-right  m-4">
+              <div className=" w-full flex flex-col items-center justify-center text-center p-2 float-left">
                 {selectedContent?.leading_person?.profilePhoto && (
                   <ImageViewer
                     src={`${imageShowUrl}/${selectedContent.leading_person.profilePhoto}`}
@@ -118,14 +118,14 @@ const Administration = () => {
                   {selectedContent?.leading_person_position}
                 </p>
               </div>
-              <div className="w-full">
-                {selectedContent?.leading_person_message && (
-                  <Content>{selectedContent.leading_person_message}</Content>
-                )}
-              </div>
             </div>
-          </CardContent>
-        </Card>
+            <div className="w-full">
+              {selectedContent?.leading_person_message && (
+                <Content>{selectedContent.leading_person_message}</Content>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

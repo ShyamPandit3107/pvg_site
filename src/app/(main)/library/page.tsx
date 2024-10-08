@@ -9,6 +9,8 @@ import Timings from "./_ui/timings";
 import OnlineLibrary from "./_ui/online-library";
 import ContactLibrary from "./_ui/contact-library-section";
 import { Separator } from "@/components/ui/separator";
+import HeadingWithImage from "@/components/ui/heading-with-image";
+import VisionMission from "./_ui/vision-mission";
 
 const Library = () => {
   const [selectedContent, setSelectedContent] = useState("Librarians Message");
@@ -24,7 +26,7 @@ const Library = () => {
   };
   console.log(libraryData);
   return (
-    <div className="flex flex-col md:flex-row border-t-1 border-back">
+    <div className="flex flex-col border-t-1 border-back">
       {/* Mobile menu button */}
       <button
         className="md:hidden p-4 bg-background text-primary"
@@ -32,57 +34,65 @@ const Library = () => {
       >
         <Menu size={24} />
       </button>
-
-      {/* Sidebar */}
-      <div
-        className={`${
-          isSidebarOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 bg-gray-100 p-4`}
-      >
-        <ul>
-          {sidebar.map((item, index) => (
-            <li key={index} className="mb-2">
-              <button
-                className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
-                  selectedContent === item
-                    ? "border-primary font-semibold text-primary border-b-2 "
-                    : "border-transparent"
-                }`}
-                onClick={() => handleContentSelect(item)}
-              >
-                {item}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <Separator
-        orientation="vertical"
-        className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
-      />
-      {/* Main content */}
-      <div className="flex-1 p-6">
-        {selectedContent === "Librarians Message" ? (
-          <LibrarianMessage
-            message={libraryData?.library_site?.library_message}
-          />
-        ) : selectedContent === "Timings" ? (
-          <Timings timings={libraryData?.library_site?.library_timing} />
-        ) : selectedContent === "Rules and Regulations" ? (
-          <RulesAndRegulations
-            rules={libraryData?.library_site?.library_rule}
-          />
-        ) : selectedContent === "Online Library" ? (
-          <OnlineLibrary />
-        ) : selectedContent === "Contact Library Section" ? (
-          <ContactLibrary
-            contacts={libraryData?.library_site?.library_contact}
-          />
-        ) : (
-          <LibrarianMessage
-            message={libraryData?.library_site?.library_message}
-          />
-        )}
+      <HeadingWithImage>Library</HeadingWithImage>
+      <div className="flex flex-col md:flex-row border-t-1 border-back">
+        {/* Sidebar */}
+        <div
+          className={`${
+            isSidebarOpen ? "block" : "hidden"
+          } md:block w-full md:w-72 bg-gray-100 p-4`}
+        >
+          <ul>
+            {sidebar.map((item, index) => (
+              <li key={index} className="mb-2">
+                <button
+                  className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
+                    selectedContent === item
+                      ? "border-primary font-semibold text-primary border-b-2 "
+                      : "border-transparent"
+                  }`}
+                  onClick={() => handleContentSelect(item)}
+                >
+                  {item}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Separator
+          orientation="vertical"
+          className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
+        />
+        {/* Main content */}
+        <div className="flex-1 p-6">
+          {selectedContent === "Librarians Message" ? (
+            <LibrarianMessage
+              message={libraryData?.library_site?.library_message}
+              image={libraryData?.library_site?.image}
+            />
+          ) : // ) : selectedContent === "Timings" ? (
+          //   <Timings timings={libraryData?.library_site?.library_timing} />
+          selectedContent === "Rules and Regulations" ? (
+            <RulesAndRegulations
+              rules={libraryData?.library_site?.library_rule}
+            />
+          ) : selectedContent === "E Resources" ? (
+            <OnlineLibrary />
+          ) : selectedContent === "Contact" ? (
+            <ContactLibrary
+              contacts={libraryData?.library_site?.library_contact}
+            />
+          ) : selectedContent === "Vision Mission" ? (
+            <VisionMission
+            // contacts={libraryData?.library_site?.library_contact}
+            />
+          ) : (
+            <LibrarianMessage
+              message={libraryData?.library_site?.library_message}
+              image={libraryData?.library_site?.image}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
@@ -91,8 +101,9 @@ const Library = () => {
 export default Library;
 const sidebar = [
   "Librarians Message",
-  "Timings",
+  // "Timings",p
   "Rules and Regulations",
-  "Online Library",
-  "Contact Library Section",
+  "E Resources",
+  "Vision Mission",
+  "Contact",
 ];

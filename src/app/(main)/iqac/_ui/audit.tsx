@@ -9,7 +9,7 @@ const Audit = ({ data }: { data: any }) => {
   const [viewPdf, setViewPdf] = React.useState<any>();
   return (
     <div>
-      <Heading className="mb-2">SSR Documents</Heading>
+      <Heading className="mb-2">Audit</Heading>
       {viewPdf ? (
         <PDFViewer file={viewPdf} setActive={setViewPdf} />
       ) : (

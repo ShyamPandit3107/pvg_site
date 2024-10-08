@@ -15,18 +15,11 @@ const HodMessage = ({
   hodDetails: any;
 }) => {
   return (
-    <Card className="bg-background shadow-none">
-      <CardHeader>
-        <CardTitle>
-          <SubHeading className="text-2xl">HOD Message</SubHeading>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-col-reverse sm:flex-row justify-center items-center gap-4">
-          <div className="sm:w-4/5 w-full">
-            {message && <Content>{message}</Content>}
-          </div>
-          <div className="sm:w-1/5 w-full flex flex-col items-center justify-center text-center">
+    <div className="bg-background shadow-none">
+      <Heading className="mb-2">HOD Message</Heading>
+      <div>
+        <div className="flex md:inline md:float-right  m-4">
+          <div className=" w-full flex flex-col items-center justify-center text-center p-2 float-left">
             <ImageViewer
               src={`${imageShowUrl}/${hodDetails?.dHead?.staffProfilePhoto}`}
               alt="founder image"
@@ -39,9 +32,12 @@ const HodMessage = ({
               {hodDetails?.dTitle}
             </p>
           </div>
+          <div className="w-full">
+            {message && <Content>{message}</Content>}
+          </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 

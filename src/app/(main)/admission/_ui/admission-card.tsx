@@ -25,7 +25,7 @@ export default function AdmissionCard({
     return (
       <Card className="my-2 cursor-pointer bg-background hover:bg-secondary shadow-md">
         <CardHeader>
-          <CardTitle className="flex justify-between items-center text-primary underline">
+          <CardTitle className="flex justify-between items-center text-xl text-primary underline">
             <span>{data?.type || data.applicationName}</span>
             {data?.type && (
               <Button

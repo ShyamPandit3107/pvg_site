@@ -34,7 +34,7 @@ const Examination = () => {
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 bg-gray-100 p-4`}
+        } md:block w-full md:w-72 bg-gray-100 p-4`}
       >
         <ul>
           {sidebar.map((item, index) => (

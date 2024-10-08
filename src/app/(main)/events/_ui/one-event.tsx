@@ -40,7 +40,7 @@ export default function OneEvent({ evid }: { evid: string }) {
   }
 
   return (
-    <Card className="w-full  mx-auto bg-background">
+    <Card className="w-full mx-auto bg-background">
       <CardHeader>
         <CardTitle>
           <Heading>{oneEvent?.one_event.event_name}</Heading>

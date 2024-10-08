@@ -9,6 +9,7 @@ import About from "./_ui/about";
 import SubCourse from "./_ui/sub-course";
 import Heading from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
+import HeadingWithImage from "@/components/ui/heading-with-image";
 
 interface SubHead {
   sub_head_title_main: string;
@@ -78,7 +79,7 @@ const AcademicCourse: React.FC = () => {
     setIsSidebarOpen(false);
   };
   return (
-    <div className="flex flex-col md:flex-row border-t-1 border-back">
+    <div className="flex flex-col ">
       {/* Mobile menu button */}
       <button
         className="md:hidden p-4 bg-background text-primary"
@@ -88,43 +89,45 @@ const AcademicCourse: React.FC = () => {
       </button>
 
       {/* Sidebar */}
-      <div
-        className={`${
-          isSidebarOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 bg-gray-100 p-4`}
-      >
-        <ul>
-          {sidebar.map((item, index) => (
-            <li key={index} className="mb-2">
-              <button
-                className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
-                  selectedContent.sub_head_title_main === item
-                    ? "border-primary font-semibold text-primary border-b-2 "
-                    : "border-transparent"
-                }`}
-                onClick={() => handleContentSelect(item)}
-              >
-                {item}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <Separator
-        orientation="vertical"
-        className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
-      />
-      {/* Main content */}
-      <div className="flex-1 p-6">
-        <Heading>{courses?.head_name}</Heading>
-        {selectedContent.sub_head_title_main === "About" ? (
-          <About
-            about={courses?.head_about}
-            image={courses?.head_images?.[0]}
-          />
-        ) : (
-          <SubCourse data={selectedContent} />
-        )}
+      <HeadingWithImage>{courses?.head_name}</HeadingWithImage>
+      <div className="flex flex-col md:flex-row border-t-1 border-back">
+        <div
+          className={`${
+            isSidebarOpen ? "block" : "hidden"
+          } md:block w-full md:w-72 bg-gray-100 p-4`}
+        >
+          <ul>
+            {sidebar.map((item, index) => (
+              <li key={index} className="mb-2">
+                <button
+                  className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2  hover:border-primary duration-300 ${
+                    selectedContent.sub_head_title_main === item
+                      ? "border-primary font-semibold text-primary border-b-2 "
+                      : "border-transparent"
+                  }`}
+                  onClick={() => handleContentSelect(item)}
+                >
+                  {item}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Separator
+          orientation="vertical"
+          className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
+        />
+        {/* Main content */}
+        <div className="flex-1 p-6">
+          {selectedContent.sub_head_title_main === "About" ? (
+            <About
+              about={courses?.head_about}
+              image={courses?.head_images?.[0]}
+            />
+          ) : (
+            <SubCourse data={selectedContent} />
+          )}
+        </div>
       </div>
     </div>
   );

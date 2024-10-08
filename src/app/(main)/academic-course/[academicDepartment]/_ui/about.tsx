@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Heading from "@/components/ui/heading";
 import ImageViewer from "@/components/ui/image-viewer";
 import { imageShowUrl } from "@/lib/BaseUrl";
-import { Heading } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
@@ -13,14 +13,11 @@ const About = ({
   image: string | undefined;
 }) => {
   return (
-    <Card className="bg-background shadow-none">
-      <CardHeader>
-        <CardTitle className="underline text-primary">About</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-col-reverse sm:flex-row justify-center items-center gap-4">
-          <div className="md:w-4/5 w-full">{about}</div>
-          <div className="sm:w-1/5 w-full flex flex-col items-center justify-center text-center">
+    <div className="bg-background shadow-none">
+      <Heading className="mb-2">About</Heading>
+      <div>
+        <div className="flex md:inline md:float-right  m-4">
+          <div className="w-full flex flex-col items-center justify-center text-center p-2 float-left">
             {image && (
               <ImageViewer
                 src={`${imageShowUrl}/${image}`}
@@ -31,8 +28,9 @@ const About = ({
             )}
           </div>
         </div>
-      </CardContent>
-    </Card>
+        <div className="w-full">{about}</div>
+      </div>
+    </div>
   );
 };
 

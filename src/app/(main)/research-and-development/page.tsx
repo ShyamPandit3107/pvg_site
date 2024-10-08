@@ -80,7 +80,7 @@ const RandD = () => {
       <div
         className={`${
           isSidebarOpen ? "block" : "hidden"
-        } md:block wmd:block w-full md:w-64 bg-gray-100 p-4`}
+        } md:block wmd:block w-full md:w-72 bg-gray-100 p-4`}
       >
         <ul>
           {Sidebar.map((item, index) => (

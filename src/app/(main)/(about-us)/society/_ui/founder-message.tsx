@@ -21,15 +21,12 @@ const FounderMessage = ({
   // if (!data) return null;
 
   return (
-    <Card className="bg-background shadow-none">
-      <CardHeader>
-        <CardTitle>
-          <Heading>Founder Message</Heading>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-col  justify-center items-center gap-4">
-          <div className="w-full flex flex-col items-center justify-center text-center">
+    <div className="bg-background shadow-none ">
+      <Heading>Founder Message</Heading>
+
+      <div>
+        <div className=" flex md:inline md:float-right  m-4">
+          <div className="w-full flex flex-col items-center justify-center text-center p-2 float-left">
             <ImageViewer
               src={`${imageShowUrl}/${image}`}
               alt="founder image"
@@ -40,12 +37,10 @@ const FounderMessage = ({
             <h3 className="text-lg font-semibold mt-2 text-primary">{name}</h3>
             <p className="text-sm text-muted-foreground">{designation}</p>
           </div>
-          <div className=" w-full">
-            {message && <Content>{message}</Content>}
-          </div>
         </div>
-      </CardContent>
-    </Card>
+        <div className=" w-full">{message && <Content>{message}</Content>}</div>
+      </div>
+    </div>
   );
 };
 

@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import OneNotices from "./_ui/one-notice";
 import { useSearchParams } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
+import HeadingWithImage from "@/components/ui/heading-with-image";
 
 const Notices = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -42,7 +43,7 @@ const Notices = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row border-t-1 border-back">
+    <div className="flex flex-col ">
       {/* Mobile menu button */}
       <button
         className="md:hidden p-4 bg-background text-primary"
@@ -50,37 +51,40 @@ const Notices = () => {
       >
         <Menu size={24} />
       </button>
-      <Separator
-        orientation="vertical"
-        className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
-      />
-      {/* Sidebar */}
-      <div
-        className={`${
-          isSidebarOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 bg-gray-100 p-4 h-[30rem] overflow-y-auto`}
-      >
-        <ul>
-          {notices?.announcement?.map((item: any, index: any) => (
-            <li key={index} className="mb-2">
-              <button
-                className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2 hover:border-primary duration-300 ${
-                  selectedContent === item._id
-                    ? "border-primary font-semibold text-primary"
-                    : "border-transparent"
-                }`}
-                onClick={() => handleContentSelect(item._id)}
-              >
-                {item.insAnnTitle}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <HeadingWithImage>Notices</HeadingWithImage>
+      <div className="flex flex-col md:flex-row">
+        <Separator
+          orientation="vertical"
+          className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
+        />
+        {/* Sidebar */}
+        <div
+          className={`${
+            isSidebarOpen ? "block" : "hidden"
+          } md:block w-full md:w-72 bg-gray-100 p-4 h-screen overflow-y-auto`}
+        >
+          <ul>
+            {notices?.announcement?.map((item: any, index: any) => (
+              <li key={index} className="mb-2">
+                <button
+                  className={`w-full text-left p-4 m-1 hover:text-primary hover:font-semibold border-b-2 hover:border-primary duration-300 ${
+                    selectedContent === item._id
+                      ? "border-primary font-semibold text-primary"
+                      : "border-transparent"
+                  }`}
+                  onClick={() => handleContentSelect(item._id)}
+                >
+                  {item.insAnnTitle}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      {/* Main content */}
-      <div className="flex-1 p-6">
-        {selectedContent && <OneNotices id={selectedContent} />}
+        {/* Main content */}
+        <div className="flex-1 p-6">
+          {selectedContent && <OneNotices id={selectedContent} />}
+        </div>
       </div>
     </div>
   );

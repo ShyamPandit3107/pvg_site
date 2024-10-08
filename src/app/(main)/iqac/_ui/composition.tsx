@@ -12,6 +12,7 @@ import { imageShowUrl } from "@/lib/BaseUrl";
 import { useIqacComposition } from "@/api/api-hooks";
 import { useStore } from "@/store";
 import ImageViewer from "@/components/ui/image-viewer";
+import Link from "next/link";
 const Composition = () => {
   const qid = useStore((state) => state.qid);
   const { data: compostion } = useIqacComposition({
@@ -34,6 +35,7 @@ const Composition = () => {
             <TableHead className="text-primary-foreground">
               Designation
             </TableHead>
+            <TableHead className="text-primary-foreground">Profile</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -46,19 +48,23 @@ const Composition = () => {
                     index & 1 ? "bg-gray-100" : ""
                   }`}
                 >
-                  <TableHead>{index + 1}</TableHead>
-                  <TableHead>
+                  <TableHead className="text-lg">{index + 1}</TableHead>
+                  <TableHead className="text-lg">
                     {item?.student?.studentProfilePhoto && (
                       <ImageViewer
                         src={`${imageShowUrl}/${item?.student?.studentProfilePhoto}`}
                         alt="profile photo"
-                        width={50}
-                        height={50}
+                        width={150}
+                        height={150}
+                        className="p-1"
                       />
                     )}
                   </TableHead>
-                  <TableHead>{`${item?.student?.studentFirstName} ${item?.student?.studentMiddleName} ${item?.student?.studentLastName}`}</TableHead>
-                  <TableHead>{item?.designation}</TableHead>
+                  <TableHead className="text-lg">{`${item?.student?.studentFirstName} ${item?.student?.studentMiddleName} ${item?.student?.studentLastName}`}</TableHead>
+                  <TableHead className="text-lg">{item?.designation}</TableHead>
+                  <TableHead className="text-lg">
+                    <Link href="#">View</Link>
+                  </TableHead>
                 </TableRow>
               );
             } else {
@@ -69,19 +75,23 @@ const Composition = () => {
                     index & 1 ? "bg-gray-100" : ""
                   }`}
                 >
-                  <TableHead>{index + 1}</TableHead>
-                  <TableHead>
+                  <TableHead className="text-lg">{index + 1}</TableHead>
+                  <TableHead className="text-lg">
                     {item?.staff?.staffProfilePhoto && (
                       <ImageViewer
                         src={`${imageShowUrl}/${item?.staff?.staffProfilePhoto}`}
                         alt="profile photo"
-                        width={50}
-                        height={50}
+                        width={150}
+                        height={150}
+                        className="p-1"
                       />
                     )}
                   </TableHead>
-                  <TableHead>{`${item?.staff?.staffFirstName} ${item?.staff?.staffMiddleName} ${item?.staff?.staffLastName}`}</TableHead>
-                  <TableHead>{item?.designation}</TableHead>
+                  <TableHead className="text-lg">{`${item?.staff?.staffFirstName} ${item?.staff?.staffMiddleName} ${item?.staff?.staffLastName}`}</TableHead>
+                  <TableHead className="text-lg">{item?.designation}</TableHead>
+                  <TableHead className="text-lg">
+                    <Link href="#">View</Link>
+                  </TableHead>
                 </TableRow>
               );
             }

@@ -94,7 +94,7 @@ const EventAccrediationVisionMission = ({
       <div className="flex md:gap-10 items-center  flex-col md:flex-row h-fit p-2">
         <div className=" w-full max-w-md  bg-background shadow-md rounded-lg md:mt-0 mt-10 h-[24rem]">
           <SubHeading className="font-extrabold text-[1.5rem]">
-            Upcoming Events
+            Events
           </SubHeading>
           <div className="p-0 bg-background inseventsbox">
             <div className="scrollList">
@@ -118,7 +118,7 @@ const EventAccrediationVisionMission = ({
         {iso_certificate && iso_certificate.length > 0 ? (
           <Card className="w-full max-w-md  bg-background shadow-md rounded-lg md:mt-0 mt-10">
             <SubHeading className="font-extrabold text-[1.5rem]">
-              Affiliation
+              Accrediation and Affiliation
             </SubHeading>
             <CardContent className="p-0 bg-background">
               <div className="grid grid-cols-2 gap-4 justify-center items-center mb-2">

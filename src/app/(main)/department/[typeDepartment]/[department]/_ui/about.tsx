@@ -10,22 +10,14 @@ import React from "react";
 const About = ({ data }: { data: any }) => {
   return (
     <div className="flex flex-col">
-      <SubHeading className="text-2xl">About</SubHeading>
+      <Heading className="text-2xl">About</Heading>
       {data?.map((item: any) => (
-        <Card className="bg-background shadow-none" key={item._id}>
-          <CardHeader>
-            <CardTitle className="underline text-xl text-primary font-semibold">
-              {item?.sub_head_title}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col-reverse sm:flex-row justify-center items-center gap-4">
-              <div className="sm:w-4/5 w-full">
-                {item?.sub_head_body && (
-                  <Content>{item?.sub_head_body}</Content>
-                )}
-              </div>
-              <div className="sm:w-1/5 w-full flex flex-col items-center justify-center text-center">
+        <div className="bg-background shadow-none" key={item._id}>
+          <SubHeading>{item?.sub_head_title}</SubHeading>
+
+          <div>
+            <div className="flex md:inline md:float-right  m-4">
+              <div className=" w-full flex flex-col items-center justify-center text-center p-2 float-left">
                 <ImageViewer
                   src={`${imageShowUrl}/${item?.sub_heading_image}`}
                   alt="founder image"
@@ -34,8 +26,11 @@ const About = ({ data }: { data: any }) => {
                 />
               </div>
             </div>
-          </CardContent>
-        </Card>
+            <div className="w-full">
+              {item?.sub_head_body && <Content>{item?.sub_head_body}</Content>}
+            </div>
+          </div>
+        </div>
       ))}
     </div>
   );

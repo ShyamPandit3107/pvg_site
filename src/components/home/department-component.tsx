@@ -26,7 +26,7 @@ const DepartmentComponent = ({ did, name }: { did: string; name: string }) => {
         </div>
         {/* <CardTitle className="text-center text-xl mb-1">{name}</CardTitle> */}
       </CardHeader>
-      <CardContent className="h-[150px] sm:h-[200px] flex flex-col items-center justify-center text-xs sm:text-sm relative">
+      <CardContent className="h-[150px] sm:h-[200px] flex flex-col items-center justify-center text-center  text-xs sm:text-sm relative">
         <h3 className="text-2xl font-medium top-0 absolute mb-10">{name}</h3>
         <p className="text-sm md:text-base line-clamp-5">
           {departmentInfo?.department_site?.department_hod_message && (
@@ -42,7 +42,7 @@ const DepartmentComponent = ({ did, name }: { did: string; name: string }) => {
           nesciunt sit cum perferendis. */}
         </p>
       </CardContent>
-      <CardFooter className="flex justify-end flex-shrink-0">
+      <CardFooter className="flex items-center justify-center flex-shrink-0">
         <Link href={`department/redirect/${did}`}>
           <Button className="hover:opacity-95 hover:bg-primary text-xs md:text-sm lg:text-base">
             Read More

@@ -17,6 +17,7 @@ import SSR2018Reports from "./_ui/srr-2018-reports";
 import SSR2018Documents from "./_ui/srr-2018-documents";
 import AnnualReports from "./_ui/annual-reports";
 import { Separator } from "@/components/ui/separator";
+import HeadingWithImage from "@/components/ui/heading-with-image";
 
 const IQAC = () => {
   const [selectedContent, setSelectedContent] = useState("About Institute");
@@ -37,7 +38,7 @@ const IQAC = () => {
     }
   }, [tab]);
   return (
-    <div className="flex flex-col md:flex-row border-t-1 border-back">
+    <div className="flex flex-col border-t-1 border-back">
       {/* Mobile menu button */}
       <button
         className="md:hidden p-4 bg-background text-primary"
@@ -45,64 +46,69 @@ const IQAC = () => {
       >
         <Menu size={24} />
       </button>
-
+      <HeadingWithImage>IQAC</HeadingWithImage>
       {/* Sidebar */}
-      <div
-        className={`${
-          isSidebarOpen ? "block" : "hidden"
-        } md:block w-full md:w-64 bg-gray-100 p-4`}
-      >
-        <ul>
-          {sidebar.map((item, index) => (
-            <li key={index} className="mb-2">
-              <Link
-                className={`w-full text-left p-4 m-1 hover:text-primary  block hover:font-semibold border-b-2  hover:border-primary duration-300 ${
-                  selectedContent === item.url
-                    ? "border-primary font-semibold text-primary border-b-2 "
-                    : "border-transparent"
-                }`}
-                href={`/iqac?tab=${item.url}`}
-              >
-                {item.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <Separator
-        orientation="vertical"
-        className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
-      />
-      {/* Main content */}
-      <div className="flex-1 p-6">
-        {selectedContent === "composition" ? (
-          <Composition />
-        ) : selectedContent === "policy" ? (
-          <Policy />
-        ) : selectedContent === "best-practices" ? (
-          <BestPractices />
-        ) : selectedContent === "syllabus-feedback" ? (
-          <SyllabusFeedback data={iqacData?.custom?.syllabus_feedback_object} />
-        ) : selectedContent === "academic-calendar" ? (
-          <AcademicCalender data={iqacData?.custom?.academic_calendar} />
-        ) : selectedContent === "iqac-reports" ? (
-          <IQACReports
-            aqar={iqacData?.custom?.iqac_aqar}
-            minutesOfMeetings={iqacData?.custom?.meetings}
-          />
-        ) : selectedContent === "annual-reports" ? (
-          <AnnualReports data={iqacData?.custom?.annual_reports} />
-        ) : selectedContent === "ssr-2018-reports" ? (
-          <SSR2018Reports data={iqacData?.custom?.ssr_reports} />
-        ) : selectedContent === "ssr-2018-documents" ? (
-          <SSR2018Documents data={iqacData?.custom?.ssr_documents} />
-        ) : selectedContent === "audit" ? (
-          <Audit data={iqacData?.custom?.audit_reports} />
-        ) : selectedContent === "quality-initiatives" ? (
-          <QualityInitiatives />
-        ) : (
-          <h1>Default</h1>
-        )}
+
+      <div className="flex flex-col md:flex-row border-t-1 border-back">
+        <div
+          className={`${
+            isSidebarOpen ? "block" : "hidden"
+          } md:block w-full md:w-72 bg-gray-100 p-4`}
+        >
+          <ul>
+            {sidebar.map((item, index) => (
+              <li key={index} className="mb-2">
+                <Link
+                  className={`w-full text-left p-4 m-1 hover:text-primary  block hover:font-semibold border-b-2  hover:border-primary duration-300 ${
+                    selectedContent === item.url
+                      ? "border-primary font-semibold text-primary border-b-2 "
+                      : "border-transparent"
+                  }`}
+                  href={`/iqac?tab=${item.url}`}
+                >
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Separator
+          orientation="vertical"
+          className="mx-2 border-[1px] border-gray-100 h-screen hidden md:block"
+        />
+        {/* Main content */}
+        <div className="flex-1 p-6">
+          {selectedContent === "composition" ? (
+            <Composition />
+          ) : selectedContent === "policy" ? (
+            <Policy />
+          ) : selectedContent === "best-practices" ? (
+            <BestPractices />
+          ) : selectedContent === "syllabus-feedback" ? (
+            <SyllabusFeedback
+              data={iqacData?.custom?.syllabus_feedback_object}
+            />
+          ) : selectedContent === "academic-calendar" ? (
+            <AcademicCalender data={iqacData?.custom?.academic_calendar} />
+          ) : selectedContent === "iqac-reports" ? (
+            <IQACReports
+              aqar={iqacData?.custom?.iqac_aqar}
+              minutesOfMeetings={iqacData?.custom?.meetings}
+            />
+          ) : selectedContent === "annual-reports" ? (
+            <AnnualReports data={iqacData?.custom?.annual_reports} />
+          ) : selectedContent === "ssr-2018-reports" ? (
+            <SSR2018Reports data={iqacData?.custom?.ssr_reports} />
+          ) : selectedContent === "ssr-2018-documents" ? (
+            <SSR2018Documents data={iqacData?.custom?.ssr_documents} />
+          ) : selectedContent === "audit" ? (
+            <Audit data={iqacData?.custom?.audit_reports} />
+          ) : selectedContent === "quality-initiatives" ? (
+            <QualityInitiatives />
+          ) : (
+            <h1>Default</h1>
+          )}
+        </div>
       </div>
     </div>
   );

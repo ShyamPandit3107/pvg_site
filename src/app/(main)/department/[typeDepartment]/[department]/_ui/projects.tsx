@@ -10,7 +10,7 @@ const Projects = ({ projects }: { projects: any }) => {
   const [viewPdf, setViewPdf] = useState<any>();
   return (
     <div className="space-y-4">
-      <SubHeading className="text-2xl">Projects</SubHeading>
+      <Heading className="text-2xl">Projects</Heading>
       {viewPdf ? (
         <PDFViewer file={viewPdf} setActive={setViewPdf} />
       ) : (

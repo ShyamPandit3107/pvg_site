@@ -48,13 +48,13 @@ const ActivitiesTable: React.FC<ActiviteisProps> = ({
   }
 
   return (
-    <div className="container mx-auto py-10">
-      <SubHeading className="text-2xl">Activities</SubHeading>
+    <div className="mb-2">
+      <Heading className="text-2xl mb-1">Activities</Heading>
       <div className="rounded-md border">
         <Table className="border-black/80 border-[1px]">
           <TableHeader className="bg-primary text-primary-foreground">
             <TableRow>
-              <TableHead className="text-primary-foreground">Sr. No.</TableHead>
+              {/* <TableHead className="text-primary-foreground">Sr. No.</TableHead> */}
               <TableHead className="text-primary-foreground">Name</TableHead>
               <TableHead className="text-primary-foreground">
                 Department
@@ -75,7 +75,7 @@ const ActivitiesTable: React.FC<ActiviteisProps> = ({
                   index & 1 ? "bg-gray-100" : ""
                 }`}
               >
-                <TableCell>{index + 1}</TableCell>
+                {/* <TableCell>{index + 1}</TableCell> */}
                 <TableCell>{item.activity_name}</TableCell>
                 <TableCell>{item.activity_department.dName}</TableCell>
                 <TableCell>{item.activity_batch.batchName}</TableCell>

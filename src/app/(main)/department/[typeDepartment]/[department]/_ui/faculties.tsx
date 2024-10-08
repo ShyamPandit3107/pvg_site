@@ -23,7 +23,7 @@ const Faculties = ({ did }: { did: string }) => {
   console.log(facultiesData);
   return (
     <div>
-      <SubHeading className="text-2xl">Faculties</SubHeading>
+      <Heading>Faculties</Heading>
       {/* <Table className="border-black/80 border-[1px]">
         <TableHeader className="bg-primary text-primary-foreground">
           <TableRow>

@@ -5,16 +5,11 @@ import React from "react";
 
 const About = ({ name, content }: { name: string; content: string }) => {
   return (
-    <Card className="shadow-none bg-background">
-      <CardHeader>
-        <CardTitle>
-          <Heading>About {name}</Heading>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Content>{content}</Content>
-      </CardContent>
-    </Card>
+    <div className="shadow-none bg-background">
+      <Heading>About {name}</Heading>
+
+      <Content>{content}</Content>
+    </div>
   );
 };
 

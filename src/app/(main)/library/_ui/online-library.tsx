@@ -112,7 +112,7 @@ export default function LibraryOnline() {
 
   return (
     <div className="my-2">
-      <Heading>Online Library</Heading>
+      <Heading>E Resources</Heading>
       <div className="grid grid-cols-1 md:grid-cols-3">
         {getAllBookByLibrary?.books?.map((book: any, index: any) => (
           <BookCard key={index} book={book} />

@@ -5,7 +5,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { imageShowUrl } from "@/lib/BaseUrl";
 const CarouselComponent = (images: any) => {
   return (
-    <Carousel plugins={[Autoplay({ delay: 2000 })]} className="w-full">
+    <Carousel plugins={[Autoplay({ delay: 4000 })]} className="w-full">
       <CarouselContent className="w-full">
         {images.images.map((image: string, index: number) => (
           <CarouselItem key={index}>

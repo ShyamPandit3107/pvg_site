@@ -57,16 +57,13 @@ const Footer = ({ instituteAbout }: any) => {
                   <div className="text-left">
                     <h4 className="text-lg font-semibold mb-4">How to Reach</h4>
                     <p className="text-sm mb-2">
-                      <strong>Nearest Railway Station:</strong> Baramati 09KM,
-                      Daund 50KM, Pune 100KM, Mumbai 260KM
+                      <strong>Nearest Railway Station:</strong>
                     </p>
                     <p className="text-sm mb-2">
-                      <strong>Nearest Airport:</strong> Pune 100KM, Mumbai 260KM
+                      <strong>Nearest Airport:</strong>
                     </p>
                     <p className="text-sm">
-                      <strong>Govt. Buses:</strong> State Transport: Buses
-                      available from Pune-Swargate every 30 minutes, Nearest Bus
-                      Station- Baramati, All seasons tar road connectivity.
+                      <strong>Govt. Buses:</strong>
                     </p>
                   </div>
 
@@ -246,7 +243,7 @@ const Footer = ({ instituteAbout }: any) => {
         </CardContent>
       </Card>
       <Separator />
-      <div className="py-4 bg-primary text-secondary text-center md:text-left">
+      <div className="py-4 bg-primary text-secondary flex items-center justify-center text-center md:text-left">
         <p>
           Copyright ©2024 All Rights Reserved | By Software Development Cell
           Qviple, Ltd

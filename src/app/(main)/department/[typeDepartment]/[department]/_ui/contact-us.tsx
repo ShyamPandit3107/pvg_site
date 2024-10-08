@@ -31,7 +31,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ contacts }) => {
 
   return (
     <div>
-      <SubHeading className="text-2xl">Contacts</SubHeading>
+      <Heading className="text-2xl">Contacts</Heading>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {contacts.map((contact) => (
           <Card key={contact._id}>
