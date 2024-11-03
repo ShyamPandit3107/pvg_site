@@ -1,11 +1,9 @@
 "use client";
 import { usePinnedDepartment } from "@/api/api-hooks";
-import { NavigationMenuItem } from "@/components/ui/navigation-menu";
 import { useStore } from "@/store";
 import React from "react";
 import OnePinnedDepartment from "./one-pinned-department";
 import UnpinnedDepartment from "./unpin-department";
-import { on } from "events";
 
 const PinDepartment = () => {
   const id = useStore((state) => state.id);

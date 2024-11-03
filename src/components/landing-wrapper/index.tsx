@@ -1,10 +1,14 @@
 "use client";
 
-import { useInstituteMaster, useWebsiteInfoByInstitute } from "@/api/api-hooks";
+import {
+  useInstituteMaster,
+  useIqacAuthority,
+  useWebsiteInfoByInstitute,
+} from "@/api/api-hooks";
 import { State, useStore } from "@/store";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TopMenu } from "./top-menu";
-import MainMenu from "./main-menu";
+import MainMenu, { AuthorityItem, Committee } from "./main-menu";
 import tinycolor from "tinycolor2";
 import Footer from "./footer";
 import InsInfo from "./ins-info";
@@ -59,7 +63,13 @@ const adjustColors = (baseColor: string) => {
   }
 };
 
-const LandingWrapper = ({ children }: { children: React.ReactNode }) => {
+const LandingWrapper = ({
+  children,
+  type,
+}: {
+  children: React.ReactNode;
+  type?: string;
+}) => {
   const id = useStore((state: State) => state.id);
   const { data: instituteMaster, isFetched: isInstituteMasterFetched } =
     useInstituteMaster(id);
@@ -86,6 +96,35 @@ const LandingWrapper = ({ children }: { children: React.ReactNode }) => {
       );
     }
   }, [instituteMaster, websiteInfoByInstitute, setIds, setColor]);
+  const { setQid, setRndId, setNaacId } = useStore();
+  const [uniqueCommittees, setUniqueCommittees] = useState<Committee[]>([]);
+  const qid = useStore((state) => state.ids.iqacId);
+  const { data: iqacAuthority } = useIqacAuthority(qid);
+  useEffect(() => {
+    if (iqacAuthority) {
+      const newCommittees: Committee[] = [];
+      iqacAuthority.iqac.authority.forEach((item: AuthorityItem) => {
+        if (item.custom_head_name === "IQAC") {
+          setQid(item.iqac_detail);
+        } else if (item.custom_head_name === "RND") {
+          setRndId(item.iqac_detail);
+        } else if (item.custom_head_name === "NAAC") {
+          setNaacId(item.iqac_detail);
+        } else {
+          newCommittees.push({
+            id: item._id,
+            name: item.custom_head_name,
+            url: `/committe/${item._id}`,
+          });
+        }
+      });
+      const uniqueCommittees = newCommittees.filter(
+        (committee, index, self) =>
+          index === self.findIndex((c) => c.id === committee.id)
+      );
+      setUniqueCommittees(uniqueCommittees);
+    }
+  }, [iqacAuthority, setQid, setRndId]);
 
   useEffect(() => {
     if (websiteInfoByInstitute) {
@@ -102,7 +141,7 @@ const LandingWrapper = ({ children }: { children: React.ReactNode }) => {
   console.log(websiteInfoByInstitute?.one_ins?.website_looks?.logo);
   return (
     <main className="flex flex-col min-h-screen">
-      <TopMenu />
+      {type != "naac" ? <TopMenu /> : null}
       <InsInfo
         logo={
           websiteInfoByInstitute?.one_ins?.website_looks?.logo
@@ -115,13 +154,16 @@ const LandingWrapper = ({ children }: { children: React.ReactNode }) => {
         phone={websiteInfoByInstitute?.one_ins?.insPhoneNumber}
         email={websiteInfoByInstitute?.one_ins?.insEmail}
       />
-      <MainMenu
-        academicCourse={
-          websiteInfoByInstitute?.one_ins?.landing_control
-            ?.academic_courses_desk
-        }
-      />
-      <News />
+      {type != "naac" ? (
+        <MainMenu
+          academicCourse={
+            websiteInfoByInstitute?.one_ins?.landing_control
+              ?.academic_courses_desk
+          }
+          uniqueCommittees={uniqueCommittees}
+        />
+      ) : null}
+      {type != "naac" ? <News /> : null}
       <div className="flex-grow">{children}</div>
       <Footer instituteAbout={websiteInfoByInstitute?.one_ins} />
       {/* <Megaphone /> */}

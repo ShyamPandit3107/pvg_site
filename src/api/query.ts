@@ -181,6 +181,12 @@ export const fetchIqacAuthority = async (qid: string | undefined) => {
   return response.data;
 };
 
+export const fetchIqacDetailsPDF = async (qcid: string) => {
+  const response = await apiClient.get(
+    `/v2/committee/new/iqac/detail/${qcid}/all/things`
+  );
+  return response.data;
+};
 export const fetchOneIqacAuthority = async (qcid: string | undefined) => {
   const response = await apiClient.get(
     `/v2/committee/${qcid}/custom/dashboard`

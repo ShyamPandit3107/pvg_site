@@ -20,6 +20,7 @@ export interface State {
   ids: Ids;
   qid?: string;
   rndId?: string;
+  naacId?: string;
   setInsName: (insName: string) => void;
   setName: (name: string) => void;
   setId: (id: string) => void;
@@ -28,17 +29,18 @@ export interface State {
   setIds: (ids: Ids) => void;
   setQid: (qid: string) => void;
   setRndId: (rndId: string) => void;
+  setNaacId: (naacId: string) => void;
 }
 
 export const useStore = create<State>((set) => ({
   insName: undefined,
   name: undefined,
-  // id: "651ba22de39dbdf817dd520c",
+  id: "651ba22de39dbdf817dd520c",
   // id: "660bd1c7d5016c9947aef713",
   // rs sapat
   // id: "667ac2be2b6329957435b217",
   // pvg
-  id: "6660214803ff919dc4b26877",
+  // id: "6660214803ff919dc4b26877",
 
   color: undefined,
   status: undefined,
@@ -63,4 +65,5 @@ export const useStore = create<State>((set) => ({
   setIds: (ids) => set((state) => ({ ...state, ids })),
   setQid: (qid) => set({ qid }),
   setRndId: (rndId) => set({ rndId }),
+  setNaacId: (naacId) => set({ naacId }),
 }));

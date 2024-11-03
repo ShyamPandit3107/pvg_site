@@ -23,6 +23,7 @@ import {
   fetchIqacAuthority,
   fetchIqacComposition,
   fetchIqacDetails,
+  fetchIqacDetailsPDF,
   fetchLibrarySiteInfo,
   fetchNaacDetails,
   fetchNoticeInstitute,
@@ -355,6 +356,14 @@ export const useIqacAuthority = (qid: string | undefined) => {
     queryKey: ["iqacAuthority", qid],
     queryFn: () => fetchIqacAuthority(qid!),
     enabled: !!qid,
+  });
+};
+
+export const useIqacDetailsPDF = (qcid: string) => {
+  return useQuery({
+    queryKey: ["iqacDetailsPDF", qcid],
+    queryFn: () => fetchIqacDetailsPDF(qcid!),
+    enabled: !!qcid,
   });
 };
 

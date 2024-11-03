@@ -75,10 +75,10 @@ export function TopMenu() {
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>
-          IQAC{" "}
+          <Link href="/iqac">IQAC</Link>
           {/* <ChevronDown className="text-primary-foreground hover:text-accent-foreground" /> */}
         </MenubarTrigger>
-
+        {/* 
         <MenubarContent>
           <MenubarItem>
             <Link href="/iqac?tab=composition">Composition</Link>
@@ -127,16 +127,15 @@ export function TopMenu() {
               Quality Initiatives
             </Link>
           </MenubarItem>
-        </MenubarContent>
+        </MenubarContent> */}
       </MenubarMenu>
 
       <MenubarMenu>
         <MenubarTrigger>
-          NAAC{" "}
-          {/* <ChevronDown className="text-primary-foreground hover:text-accent-foreground" /> */}
+          <Link href="/naac">NAAC</Link>
         </MenubarTrigger>
 
-        <MenubarContent className="bg-background">
+        {/* <MenubarContent className="bg-background">
           <MenubarItem>
             <Link href="/naac?tab=ipp">Institute Perspective Planning</Link>
           </MenubarItem>
@@ -163,7 +162,7 @@ export function TopMenu() {
           <MenubarItem>
             <Link href="/naac?tab=undertakings">Undertakings</Link>
           </MenubarItem>
-        </MenubarContent>
+        </MenubarContent> */}
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>

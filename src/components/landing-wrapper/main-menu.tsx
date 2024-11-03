@@ -27,12 +27,13 @@ interface AcademicCourse {
   head_name: string;
 }
 
-interface AuthorityItem {
+export interface AuthorityItem {
   _id: string;
   custom_head_name: string;
+  iqac_detail: string;
 }
 
-interface Committee {
+export interface Committee {
   id: string;
   name: string;
   url: string;
@@ -40,38 +41,10 @@ interface Committee {
 
 interface MainMenuProps {
   academicCourse: AcademicCourse[];
+  uniqueCommittees: Committee[];
 }
 
-const MainMenu = ({ academicCourse }: MainMenuProps) => {
-  const qid = useStore((state) => state.ids.iqacId);
-  const { data: iqacAuthority } = useIqacAuthority(qid);
-  const { setQid, setRndId } = useStore();
-  const [uniqueCommittees, setUniqueCommittees] = useState<Committee[]>([]);
-
-  useEffect(() => {
-    if (iqacAuthority) {
-      const newCommittees: Committee[] = [];
-      iqacAuthority.iqac.authority.forEach((item: AuthorityItem) => {
-        if (item.custom_head_name === "IQAC") {
-          setQid(item._id);
-        } else if (item.custom_head_name === "RND") {
-          setRndId(item._id);
-        } else {
-          newCommittees.push({
-            id: item._id,
-            name: item.custom_head_name,
-            url: `/committe/${item._id}`,
-          });
-        }
-      });
-      const uniqueCommittees = newCommittees.filter(
-        (committee, index, self) =>
-          index === self.findIndex((c) => c.id === committee.id)
-      );
-      setUniqueCommittees(uniqueCommittees);
-    }
-  }, [iqacAuthority, setQid, setRndId]);
-
+const MainMenu = ({ academicCourse, uniqueCommittees }: MainMenuProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdowns, setOpenDropdowns] = useState<{
     [key: string]: boolean;
@@ -204,21 +177,21 @@ const MainMenu = ({ academicCourse }: MainMenuProps) => {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
-                {/* <NavigationMenuItem>
+                <NavigationMenuItem>
                   <NavigationMenuTrigger>Department</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <PinDepartment />
                   </NavigationMenuContent>
-                </NavigationMenuItem> */}
+                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
 
-            <NavigationMenu>
+            {/* <NavigationMenu>
               <NavigationMenuList className="flex space-x-2">
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Department</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    {/* <PinDepartment /> */}
+
                     <ul className="w-[230px] p-2 grid grid-cols-1">
                       {unpinnedDepartment &&
                         unpinnedDepartment.ins.map((department: any) => (
@@ -232,7 +205,7 @@ const MainMenu = ({ academicCourse }: MainMenuProps) => {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               </NavigationMenuList>
-            </NavigationMenu>
+            </NavigationMenu> */}
             <NavigationMenu>
               <NavigationMenuList className="flex space-x-2">
                 <NavigationMenuItem>

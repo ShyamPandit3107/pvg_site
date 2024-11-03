@@ -103,3 +103,9 @@ export const imageExtensionVerify = (args: string) => {
 
   return flag;
 };
+
+export const convertSnakeToTitleCase = (snakeStr: string) => {
+  return snakeStr
+    .split("_") // Capitalize the first letter of each word
+    .join(" ");
+};
