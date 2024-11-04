@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Merriweather } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import QueryProvider from "@/provider/query-provider";
 import LandingWrapper from "@/components/landing-wrapper";
 
-const inter = Inter({ subsets: ["latin"] });
+// const font = Inter({ subsets: ["latin"] });
+const font = Merriweather({
+  weight: ["400", "300", "700", "900"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={font.className}>
         <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
