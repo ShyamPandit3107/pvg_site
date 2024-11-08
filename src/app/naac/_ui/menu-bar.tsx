@@ -54,7 +54,7 @@ const MenuBar = () => {
       <Menubar className="md:flex justify-center bg-primary gap-4 text-primary-foreground border-none hidden">
         <MenubarMenu>
           <MenubarTrigger>
-            <Link href="/home">College Home</Link>
+            <Link href="/">College Home</Link>
           </MenubarTrigger>
         </MenubarMenu>
         <MenubarMenu>
